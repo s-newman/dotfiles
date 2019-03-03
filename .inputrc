@@ -1,0 +1,13 @@
+# Allows you to tab through a menu of possible options
+TAB: menu-complete
+
+# When the current typed value has multiple possible options, display them all
+set show-all-if-ambiguous on
+
+# The first tab will partially complete, then further presses will cycle
+# through the menu.  Once the menu has been cycled through, it will return to
+# the partially-completed value and restart.
+set menu-complete-display-prefix on
+
+# Case-insensitive tab completion
+set completion-ignore-case on
