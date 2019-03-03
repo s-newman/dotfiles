@@ -1,13 +1,20 @@
-filetype plugin indent on
-" show existing tab with 4 spaces width
+" Turn on syntax highlighting
+syntax on
+
+" Display tabs as 4 spaces wide
 set tabstop=4
-"when indenting with '>', use 4 spaces width
+
+" Use 4 spaces when auto-indenting
 set shiftwidth=4
-" on pressing tab, insert 4 spaces
-set expandtab
-" why is the default not the default
+
+" Make sure the default color is used
 color default
-" also lets get those sweet line numbers
+
+" Add line numbering
 set number
-" Visual indicator of the 80th column
+
+" Add a visual indicator at the 80th column
 set cc=80
+
+" on pressing tab, insert 4 spaces
+" set expandtab
