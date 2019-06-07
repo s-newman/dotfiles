@@ -17,4 +17,4 @@ alias docker-rmimages='sudo docker rmi -f $(sudo docker images -a -q)'
 alias docker-reset='docker-clean && docker-rmimages'
 
 # Virtual environment nonsense
-alias activate='source ~/bin/activator'
+alias activate='source ~/bin/activator.sh'
