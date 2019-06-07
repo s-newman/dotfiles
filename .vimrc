@@ -1,3 +1,5 @@
+filetype plugin indent on
+
 " Turn on syntax highlighting
 syntax on
 
