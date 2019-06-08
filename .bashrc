@@ -80,13 +80,18 @@ ITL='3'     # Italicsr
 UND='4'     # Underlined
 SBL='5'     # Slow blink
 
+# Often-used unicode characters - thanks for the names, Mom!
+RALPH='\xe2\x94\x8c'    # ┌
+FRANK='\xe2\x94\x94'    # └
+DASH='\xe2\x94\x80'     # ─
+
 # Get the color for the last status code
-function code_color() {
+function retcode() {
     if [ "$EXIT_CODE" -eq 0 ]
     then
-        echo $GRAY
+        echo ${BLK_FG}
     else
-        echo $RED
+        echo ${RED_FG}
     fi
 }
 
@@ -107,16 +112,18 @@ function parse_git_branch() {
         # Set the color for the current status
         if [ ! $UNTRACKED -eq 0 ]
         then
-            STATUS=$RED
+            STATUS=${RED_FG}
         elif [ ! $DIRTY -eq 0 ]
         then
-            STATUS=$YELLOW
+            STATUS=${YLW_FG}
         else
-            STATUS=$GREEN
+            STATUS=${GRN_FG}
         fi
         
         # Return the prompt bit
-        echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
+        # echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
+        echo -en "${DASH}($(esc ${STATUS})${BRANCH}"
+        echo -en "$(esc $(retcode)))"
     fi
 }
 
@@ -133,7 +140,7 @@ function end_char() {
     LAST_CODE=$(code_color)
 
     # Return that shizznits
-    echo -e "\001\e[${LAST_CODE}m\002${END}"
+    echo -en "\001\e[${LAST_CODE}m\002${END}"
 }
 
 # Aliases, breh
@@ -141,20 +148,19 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Often-used unicode characters - thanks for the names, Mom!
-RALPH='\xe2\x94\x8c'    # ┌
-FRANK='\xe2\x94\x94'    # └
-DASH='\xe2\x94\x80'     # ─
-
 # Function to simply call the other stuff that renders the prompt
 function display_prompt()
 {
     ### FIRST LINE ###
     # user@host
-    echo -en "$(esc ${BLD})$(esc ${BLK_FG})${RALPH}($(esc ${PRP_FG})\u@\h$(esc ${BLK_FG}))"
+    echo -en "$(esc ${BLD})$(esc ${BLK_FG})${RALPH}"
+    echo -en "($(esc ${PRP_FG})\u@\h$(esc ${BLK_FG}))"
 
     # Current directory
     echo -en "${DASH}($(esc ${PRP_FG})\w$(esc ${BLK_FG}))"
+
+    # Git status
+    echo -en "\$(parse_git_branch)"
 
     # Move to the second line
     echo -en "\n"
