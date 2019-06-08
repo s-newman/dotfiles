@@ -159,9 +159,6 @@ function display_prompt()
     # Current directory
     echo -en "${DASH}($(esc ${PRP_FG})\w$(esc ${BLK_FG}))"
 
-    # Git status
-    echo -en "\$(parse_git_branch)"
-
     # Move to the second line
     echo -en "\n"
 
