@@ -45,13 +45,6 @@ fi
 # START CUSTOM STUFF
 ##
 
-# Helper function for putting together ANSI escape sequences. The first
-# argument, $1, should be the ANSI escape code to use.
-function esc()
-{
-    echo -en "\001\e[${1}m\]"
-}
-
 # Foreground color shortcuts
 BLK_FG='30'
 RED_FG='31'
@@ -86,7 +79,8 @@ FRANK='\xe2\x94\x94'    # └
 DASH='\xe2\x94\x80'     # ─
 
 # Get the color for the last status code
-function retcode() {
+function retcode()
+{
     if [ "$EXIT_CODE" -eq 0 ]
     then
         echo ${BLK_FG}
@@ -132,15 +126,10 @@ function end_char() {
     # Set to '#' if root, otherwise use '$"
     if [ "$EUID" -ne 0 ]
     then
-        END="$"
+        echo "$"
     else
-        END="#"
+        echo "#"
     fi
-
-    LAST_CODE=$(code_color)
-
-    # Return that shizznits
-    echo -en "\001\e[${LAST_CODE}m\002${END}"
 }
 
 # Aliases, breh
@@ -148,28 +137,17 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Function to simply call the other stuff that renders the prompt
-function display_prompt()
-{
-    ### FIRST LINE ###
-    # user@host
-    echo -en "$(esc ${BLD})$(esc ${BLK_FG})${RALPH}"
-    echo -en "($(esc ${PRP_FG})\u@\h$(esc ${BLK_FG}))"
-
-    # Current directory
-    echo -en "${DASH}($(esc ${PRP_FG})\w$(esc ${BLK_FG}))"
-
-    # Move to the second line
-    echo -en "\n"
-
-    # Second line - just the $/#
-    echo -en "$(esc ${BLD})$(esc ${BLK_FG})${FRANK}${DASH}\$$(esc ${RST}) "
-}
-
 ##
 # Dank AF prompt
 ##
-PS1="$(display_prompt)"
+# Make sure EXIT_CODE is set
+PS1="\[\e[${BLD};\$(retcode)m\]┌("       # Start of first line
+PS1="${PS1}\[\e[${PRP_FG}m\]\u@\h"              # username@hostname
+PS1="${PS1}\[\e[\$(retcode)m\])─("         # Separator
+PS1="${PS1}\[\e[${PRP_FG}m\]\w"         # Directory
+PS1="${PS1}\[\e[\$(retcode)m\])\n"      # Separator
+PS1="${PS1}\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
+PS1="${PS1}\$(end_char)\[\e[${RST}m\] " # Second line
 
 # Save the exit code for later use
 PROMPT_COMMAND='EXIT_CODE=$?'
