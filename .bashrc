@@ -97,8 +97,66 @@ function gitparse() {
     # Only echo things if we're in a git branch
     if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = "true" ]
     then
+        ### VARIABLES ###
+
+        # Determine the branch name
+        BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+        # Count the number of unstaged changes
+        UNSTAGED=$(git status --porcelain | grep -E "^.M.*$" | wc -l)
+
+        # Count the number of staged changes
+        STAGED=$(git status --porcelain | grep -E "^M.*$" | wc -l)
+
+        # Count the number of untracked files
+        UNTRACKED=$(git status --porcelain | grep -E "^\?\?.*$" | wc -l)
+
+        # Count the number of added files
+        ADDED=$(git status --porcelain | grep -E "^A.*$" | wc -l)
+
+        # Count the number of deleted files
+        DELETED=$(git status --porcelain | grep -E "^.D.*$" | wc -l)
+
+        ### PRINTING ###
+
         echo -en "─(\001\e[${PRP_FG}m\002"  # Start separator
-        echo -en "$(git rev-parse --abbrev-ref HEAD)"
+        echo -en "${BRANCH}"        # branch
+
+        if [ "${STAGED}" -gt "0" ]  # Staged changes
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${GRN_FG}m\002"
+            echo -en "⚑${STAGED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${ADDED}" -gt "0" ]   # Added files
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${GRN_FG}m\002"
+            echo -en "+${ADDED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${UNSTAGED}" -gt "0" ]    # Unstaged changes
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${YLW_FG}m\002"
+            echo -en "∆${UNSTAGED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${UNTRACKED}" -gt "0" ]   # Untracked files
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
+            echo -en "?${UNTRACKED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${DELETED}" -gt "0" ]   # Deleted files
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
+            echo -en "-${DELETED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
         echo -en "\001\e[$(retcode)m\002)" # End separator
     fi
 #    # Determines the current git branch, if any
@@ -106,6 +164,7 @@ function gitparse() {
 #    # Only do stuff if the branch string is not null
 #    if [ ! "${BRANCH}" == "" ]
 #    then
+#
 #        # Checks if there are uncommitted changes in tracked files
 #        git diff-index --quiet HEAD --
 #        DIRTY=$?
