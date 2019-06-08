@@ -45,23 +45,47 @@ fi
 # START CUSTOM STUFF
 ##
 
-# Set shortcuts for various \e[Xm escape values
-ORANGE='38;5;166'
-BLUE='38;5;75'
-RED='38;5;124'
-GREEN='38;5;40'
-YELLOW='38;5;178'
-GRAY='38;5;240'
-BOLD='1'
-RST='\e[0m'
+# Foreground color shortcuts
+BLK_FG='30'
+RED_FG='31'
+GRN_FG='32'
+YLW_FG='33'
+BLU_FG='34'
+PRP_FG='35'
+CYN_FG='36'
+WHT_FG='37'
+
+# Background color shortcuts
+BLK_BG='40'
+RED_BG='41'
+GRN_BG='42'
+YLW_BG='43'
+BLU_BG='44'
+PRP_BG='45'
+CYN_BG='46'
+WHT_BG='47'
+
+# Other shortcuts
+RST='0'     # Reset all attributes
+BLD='1'     # Bold text
+FNT='2'     # Faint text
+ITL='3'     # Italicsr
+UND='4'     # Underlined
+SBL='5'     # Slow blink
+
+# Often-used unicode characters - thanks for the names, Mom!
+RALPH='\xe2\x94\x8c'    # ┌
+FRANK='\xe2\x94\x94'    # └
+DASH='\xe2\x94\x80'     # ─
 
 # Get the color for the last status code
-function code_color() {
+function retcode()
+{
     if [ "$EXIT_CODE" -eq 0 ]
     then
-        echo $GRAY
+        echo ${BLK_FG}
     else
-        echo $RED
+        echo ${RED_FG}
     fi
 }
 
@@ -82,16 +106,18 @@ function parse_git_branch() {
         # Set the color for the current status
         if [ ! $UNTRACKED -eq 0 ]
         then
-            STATUS=$RED
+            STATUS=${RED_FG}
         elif [ ! $DIRTY -eq 0 ]
         then
-            STATUS=$YELLOW
+            STATUS=${YLW_FG}
         else
-            STATUS=$GREEN
+            STATUS=${GRN_FG}
         fi
         
         # Return the prompt bit
-        echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
+        # echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
+        echo -en "${DASH}($(esc ${STATUS})${BRANCH}"
+        echo -en "$(esc $(retcode)))"
     fi
 }
 
@@ -100,15 +126,10 @@ function end_char() {
     # Set to '#' if root, otherwise use '$"
     if [ "$EUID" -ne 0 ]
     then
-        END="$"
+        echo "$"
     else
-        END="#"
+        echo "#"
     fi
-
-    LAST_CODE=$(code_color)
-
-    # Return that shizznits
-    echo -e "\001\e[${LAST_CODE}m\002${END}"
 }
 
 # Aliases, breh
@@ -119,12 +140,14 @@ fi
 ##
 # Dank AF prompt
 ##
-PS1="\[\e[${BOLD};\$(code_color)m\]["       # First bracket w/status code color
-PS1="$PS1\[\e[${ORANGE}m\]\u@\h "           # user@host
-PS1="$PS1\[\e[${BLUE}m\]\W"                 # dir
-PS1="$PS1\[\e[\$(code_color)m\]]"           # Second bracket w/status code color
-PS1="$PS1\$(parse_git_branch)"          # Git branch portion w/dirty notifier
-PS1="$PS1\$(end_char)\[\e[0m\] "            # End char w/status code color
+# Make sure EXIT_CODE is set
+PS1="\[\e[${BLD};\$(retcode)m\]┌("       # Start of first line
+PS1="${PS1}\[\e[${PRP_FG}m\]\u@\h"              # username@hostname
+PS1="${PS1}\[\e[\$(retcode)m\])─("         # Separator
+PS1="${PS1}\[\e[${PRP_FG}m\]\w"         # Directory
+PS1="${PS1}\[\e[\$(retcode)m\])\n"      # Separator
+PS1="${PS1}\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
+PS1="${PS1}\$(end_char)\[\e[${RST}m\] " # Second line
 
 # Save the exit code for later use
 PROMPT_COMMAND='EXIT_CODE=$?'
