@@ -93,35 +93,42 @@ function retcode()
 }
 
 # Get current branch in git repo
-function parse_git_branch() {
-    # Determines the current git branch, if any
-    BRANCH=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')
-    # Only do stuff if the branch string is not null
-    if [ ! "${BRANCH}" == "" ]
+function gitparse() {
+    # Only echo things if we're in a git branch
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = "true" ]
     then
-        # Checks if there are uncommitted changes in tracked files
-        git diff-index --quiet HEAD --
-        DIRTY=$?
-
-        # Checks if there are untracked files
-        UNTRACKED=$(git status --porcelain 2>/dev/null | grep "^??" | wc -l)
-
-        # Set the color for the current status
-        if [ ! $UNTRACKED -eq 0 ]
-        then
-            STATUS=${RED_FG}
-        elif [ ! $DIRTY -eq 0 ]
-        then
-            STATUS=${YLW_FG}
-        else
-            STATUS=${GRN_FG}
-        fi
-        
-        # Return the prompt bit
-        # echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
-        echo -en "${DASH}($(esc ${STATUS})${BRANCH}"
-        echo -en "$(esc $(retcode)))"
+        echo -en "─(\001\e[${PRP_FG}m\002"  # Start separator
+        echo -en "$(git rev-parse --abbrev-ref HEAD)"
+        echo -en "\001\e[$(retcode)m\002)" # End separator
     fi
+#    # Determines the current git branch, if any
+#    BRANCH=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')
+#    # Only do stuff if the branch string is not null
+#    if [ ! "${BRANCH}" == "" ]
+#    then
+#        # Checks if there are uncommitted changes in tracked files
+#        git diff-index --quiet HEAD --
+#        DIRTY=$?
+#
+#        # Checks if there are untracked files
+#        UNTRACKED=$(git status --porcelain 2>/dev/null | grep "^??" | wc -l)
+#
+#        # Set the color for the current status
+#        if [ ! $UNTRACKED -eq 0 ]
+#        then
+#            STATUS=${RED_FG}
+#        elif [ ! $DIRTY -eq 0 ]
+#        then
+#            STATUS=${YLW_FG}
+#        else
+#            STATUS=${GRN_FG}
+#        fi
+#        
+#        # Return the prompt bit
+#        # echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
+#        echo -en "${DASH}($(esc ${STATUS})${BRANCH}"
+#        echo -en "$(esc $(retcode)))"
+#    fi
 }
 
 # Get prompt ending character
@@ -148,8 +155,9 @@ PS1="\[\e[${BLD};\$(retcode)m\]┌("       # Start of first line
 PS1="${PS1}\[\e[${PRP_FG}m\]\u@\h"              # username@hostname
 PS1="${PS1}\[\e[\$(retcode)m\])─("         # Separator
 PS1="${PS1}\[\e[${PRP_FG}m\]\w"         # Directory
-PS1="${PS1}\[\e[\$(retcode)m\])\n"      # Separator
-PS1="${PS1}\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
+PS1="${PS1}\[\e[\$(retcode)m\])"      # Separator
+PS1="${PS1}\$(gitparse)"        # Git information
+PS1="${PS1}\n\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
 PS1="${PS1}\$(end_char)\[\e[${RST}m\] " # Second line
 
 # Save the exit code for later use
