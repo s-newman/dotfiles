@@ -159,46 +159,6 @@ function gitparse() {
 
         echo -en "\001\e[$(retcode)m\002)" # End separator
     fi
-#    # Determines the current git branch, if any
-#    BRANCH=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')
-#    # Only do stuff if the branch string is not null
-#    if [ ! "${BRANCH}" == "" ]
-#    then
-#
-#        # Checks if there are uncommitted changes in tracked files
-#        git diff-index --quiet HEAD --
-#        DIRTY=$?
-#
-#        # Checks if there are untracked files
-#        UNTRACKED=$(git status --porcelain 2>/dev/null | grep "^??" | wc -l)
-#
-#        # Set the color for the current status
-#        if [ ! $UNTRACKED -eq 0 ]
-#        then
-#            STATUS=${RED_FG}
-#        elif [ ! $DIRTY -eq 0 ]
-#        then
-#            STATUS=${YLW_FG}
-#        else
-#            STATUS=${GRN_FG}
-#        fi
-#        
-#        # Return the prompt bit
-#        # echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
-#        echo -en "${DASH}($(esc ${STATUS})${BRANCH}"
-#        echo -en "$(esc $(retcode)))"
-#    fi
-}
-
-# Get prompt ending character
-function end_char() {
-    # Set to '#' if root, otherwise use '$"
-    if [ "$EUID" -ne 0 ]
-    then
-        echo "$"
-    else
-        echo "#"
-    fi
 }
 
 # Aliases, breh
@@ -217,7 +177,7 @@ PS1="${PS1}\[\e[${PRP_FG}m\]\w"         # Directory
 PS1="${PS1}\[\e[\$(retcode)m\])"      # Separator
 PS1="${PS1}\$(gitparse)"        # Git information
 PS1="${PS1}\n\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
-PS1="${PS1}\$(end_char)\[\e[${RST}m\] " # Second line
+PS1="${PS1}\\$\[\e[${RST}m\] " # Second line
 
 # Save the exit code for later use
 PROMPT_COMMAND='EXIT_CODE=$?'
