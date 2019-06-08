@@ -39,7 +39,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-# ^that's just giving us tab completion
+
+if [ -f ~/.git-completion.sh ]; then
+	. ~/.git-completion.sh
+fi
 
 ##
 # START CUSTOM STUFF
