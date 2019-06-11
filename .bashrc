@@ -120,6 +120,9 @@ function gitparse() {
         # Count the number of stash entries
         STASH=$(git stash list | wc -l)
 
+        # Count the number of merge conflicts
+        CONFLICTS=$(git diff --name-only --diff-filter=U | wc -l)
+
         ### PRINTING ###
 
         echo -en "─(\001\e[${PRP_FG}m\002"  # Start separator
@@ -189,10 +192,17 @@ function gitparse() {
             echo -en "\001\e[$(retcode)m\002"
         fi
 
-        if [ "${DELETED}" -gt "0" ]   # Deleted files
+        if [ "${DELETED}" -gt "0" ]     # Deleted files
         then
             echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
             echo -en "-${DELETED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${CONFLICTS}" -gt "0" ]   # Merge conflicts
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
+            echo -en "‼"
             echo -en "\001\e[$(retcode)m\002"
         fi
 
