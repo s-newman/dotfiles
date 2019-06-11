@@ -5,6 +5,8 @@ Various user configuration files.
 Notes
 -----
 
+Don't mind me, I'm just trying something out.
+
 ### Colors
 
 Colors are escaped with `\e[Xm\[` escape values, where X is the color code.
