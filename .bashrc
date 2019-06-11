@@ -132,7 +132,14 @@ function gitparse() {
         if [ "${AHEAD}" -gt "0" ]   # Unpushed commits
         then
             echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
-            echo -en "⭡${AHEAD}"
+            echo -en "⌃${AHEAD}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${AHEAD}" -gt "0" ]   # Unpulled commits
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
+            echo -en "⌄${BEHIND}"
             echo -en "\001\e[$(retcode)m\002"
         fi
 
