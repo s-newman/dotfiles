@@ -123,6 +123,9 @@ function gitparse() {
         # Count the number of unpulled commits
         BEHIND=$(git rev-list --count ..@{u})
 
+        # Count the number of stash entries
+        STASH=$(git stash list | wc -l)
+
         ### PRINTING ###
 
         echo -en "─(\001\e[${PRP_FG}m\002"  # Start separator
@@ -136,17 +139,24 @@ function gitparse() {
             echo -en "\001\e[$(retcode)m\002"
         fi
 
-        if [ "${AHEAD}" -gt "0" ]   # Unpulled commits
+        if [ "${BEHIND}" -gt "0" ]   # Unpulled commits
         then
             echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
             echo -en "⌄${BEHIND}"
             echo -en "\001\e[$(retcode)m\002"
         fi
 
+        if [ "${STASH}" -gt "0" ]  # Stash entries
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${BLU_FG}m\002"
+            echo -en "⚑${STASH}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
         if [ "${STAGED}" -gt "0" ]  # Staged changes
         then
             echo -en "\001\e[$(retcode)m\002|\001\e[${GRN_FG}m\002"
-            echo -en "⚑${STAGED}"
+            echo -en "✔${STAGED}"
             echo -en "\001\e[$(retcode)m\002"
         fi
 
@@ -167,7 +177,7 @@ function gitparse() {
         if [ "${UNTRACKED}" -gt "0" ]   # Untracked files
         then
             echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
-            echo -en "?${UNTRACKED}"
+            echo -en "✗${UNTRACKED}"
             echo -en "\001\e[$(retcode)m\002"
         fi
 
