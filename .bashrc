@@ -39,7 +39,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-# ^that's just giving us tab completion
+
+if [ -f ~/.git-completion.sh ]; then
+	. ~/.git-completion.sh
+fi
 
 ##
 # START CUSTOM STUFF
@@ -90,45 +93,120 @@ function retcode()
 }
 
 # Get current branch in git repo
-function parse_git_branch() {
-    # Determines the current git branch, if any
-    BRANCH=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')
-    # Only do stuff if the branch string is not null
-    if [ ! "${BRANCH}" == "" ]
+function gitparse() {
+    # Only echo things if we're in a git branch
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = "true" ]
     then
-        # Checks if there are uncommitted changes in tracked files
-        git diff-index --quiet HEAD --
-        DIRTY=$?
+        ### VARIABLES ###
 
-        # Checks if there are untracked files
-        UNTRACKED=$(git status --porcelain 2>/dev/null | grep "^??" | wc -l)
+        # Determine the branch name
+        BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 
-        # Set the color for the current status
-        if [ ! $UNTRACKED -eq 0 ]
+        # Count the number of unstaged changes
+        UNSTAGED=$(git status --porcelain | grep -E "^.M.*$" | wc -l)
+
+        # Count the number of staged changes
+        STAGED=$(git status --porcelain | grep -E "^M.*$" | wc -l)
+
+        # Count the number of untracked files
+        UNTRACKED=$(git status --porcelain | grep -E "^\?\?.*$" | wc -l)
+
+        # Count the number of added files
+        ADDED=$(git status --porcelain | grep -E "^A.*$" | wc -l)
+
+        # Count the number of deleted files
+        DELETED=$(git status --porcelain | grep -E "^.D.*$" | wc -l)
+
+        # Count the number of stash entries
+        STASH=$(git stash list | wc -l)
+
+        # Count the number of merge conflicts
+        CONFLICTS=$(git diff --name-only --diff-filter=U | wc -l)
+
+        ### PRINTING ###
+
+        echo -en "─(\001\e[${PRP_FG}m\002"  # Start separator
+
+        echo -en "${BRANCH}"        # branch
+
+        # Only count unpushed/pulled commits if this branch has an upstream
+        if $(git diff --quiet @{u} &>/dev/null)
         then
-            STATUS=${RED_FG}
-        elif [ ! $DIRTY -eq 0 ]
-        then
-            STATUS=${YLW_FG}
+            # Count the number of unpushed commits
+            AHEAD=$(git rev-list --count @{u}.. 2>/dev/null)
+
+            # Count the number of unpulled commits
+            BEHIND=$(git rev-list --count ..@{u} 2>/dev/null)
+
+            if [ "${AHEAD}" -gt "0" ]   # Unpushed commits
+            then
+                echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
+                echo -en "⌃${AHEAD}"
+                echo -en "\001\e[$(retcode)m\002"
+            fi
+
+            if [ "${BEHIND}" -gt "0" ]   # Unpulled commits
+            then
+                echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
+                echo -en "⌄${BEHIND}"
+                echo -en "\001\e[$(retcode)m\002"
+            fi
         else
-            STATUS=${GRN_FG}
+            echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
+            echo -en "L"
+            echo -en "\001\e[$(retcode)m\002"
         fi
-        
-        # Return the prompt bit
-        # echo -e "\001\e[$(code_color)m\002(\001\e[${STATUS}m\002${BRANCH}\001\e[$(code_color)m\002)"
-        echo -en "${DASH}($(esc ${STATUS})${BRANCH}"
-        echo -en "$(esc $(retcode)))"
-    fi
-}
 
-# Get prompt ending character
-function end_char() {
-    # Set to '#' if root, otherwise use '$"
-    if [ "$EUID" -ne 0 ]
-    then
-        echo "$"
-    else
-        echo "#"
+        if [ "${STASH}" -gt "0" ]  # Stash entries
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${BLU_FG}m\002"
+            echo -en "⚑${STASH}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${STAGED}" -gt "0" ]  # Staged changes
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${GRN_FG}m\002"
+            echo -en "✔${STAGED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${ADDED}" -gt "0" ]   # Added files
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${GRN_FG}m\002"
+            echo -en "+${ADDED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${UNSTAGED}" -gt "0" ]    # Unstaged changes
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${YLW_FG}m\002"
+            echo -en "∆${UNSTAGED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${UNTRACKED}" -gt "0" ]   # Untracked files
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
+            echo -en "✗${UNTRACKED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${DELETED}" -gt "0" ]     # Deleted files
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
+            echo -en "-${DELETED}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        if [ "${CONFLICTS}" -gt "0" ]   # Merge conflicts
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${RED_FG}m\002"
+            echo -en "‼"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
+
+        echo -en "\001\e[$(retcode)m\002)" # End separator
     fi
 }
 
@@ -145,9 +223,10 @@ PS1="\[\e[${BLD};\$(retcode)m\]┌("       # Start of first line
 PS1="${PS1}\[\e[${PRP_FG}m\]\u@\h"              # username@hostname
 PS1="${PS1}\[\e[\$(retcode)m\])─("         # Separator
 PS1="${PS1}\[\e[${PRP_FG}m\]\w"         # Directory
-PS1="${PS1}\[\e[\$(retcode)m\])\n"      # Separator
-PS1="${PS1}\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
-PS1="${PS1}\$(end_char)\[\e[${RST}m\] " # Second line
+PS1="${PS1}\[\e[\$(retcode)m\])"      # Separator
+PS1="${PS1}\$(gitparse)"        # Git information
+PS1="${PS1}\n\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
+PS1="${PS1}\\$\[\e[${RST}m\] " # Second line
 
 # Save the exit code for later use
 PROMPT_COMMAND='EXIT_CODE=$?'
