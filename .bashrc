@@ -100,7 +100,7 @@ function gitparse() {
         ### VARIABLES ###
 
         # Determine the branch name
-        BRANCH=$(git rev-parse --abbrev-ref HEAD)
+        BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 
         # Count the number of unstaged changes
         UNSTAGED=$(git status --porcelain | grep -E "^.M.*$" | wc -l)
@@ -117,12 +117,6 @@ function gitparse() {
         # Count the number of deleted files
         DELETED=$(git status --porcelain | grep -E "^.D.*$" | wc -l)
 
-        # Count the number of unpushed commits
-        AHEAD=$(git rev-list --count @{u}..)
-
-        # Count the number of unpulled commits
-        BEHIND=$(git rev-list --count ..@{u})
-
         # Count the number of stash entries
         STASH=$(git stash list | wc -l)
 
@@ -132,17 +126,31 @@ function gitparse() {
 
         echo -en "${BRANCH}"        # branch
 
-        if [ "${AHEAD}" -gt "0" ]   # Unpushed commits
+        # Only count unpushed/pulled commits if this branch has an upstream
+        if $(git diff --quiet @{u} &>/dev/null)
         then
-            echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
-            echo -en "⌃${AHEAD}"
-            echo -en "\001\e[$(retcode)m\002"
-        fi
+            # Count the number of unpushed commits
+            AHEAD=$(git rev-list --count @{u}.. 2>/dev/null)
 
-        if [ "${BEHIND}" -gt "0" ]   # Unpulled commits
-        then
+            # Count the number of unpulled commits
+            BEHIND=$(git rev-list --count ..@{u} 2>/dev/null)
+
+            if [ "${AHEAD}" -gt "0" ]   # Unpushed commits
+            then
+                echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
+                echo -en "⌃${AHEAD}"
+                echo -en "\001\e[$(retcode)m\002"
+            fi
+
+            if [ "${BEHIND}" -gt "0" ]   # Unpulled commits
+            then
+                echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
+                echo -en "⌄${BEHIND}"
+                echo -en "\001\e[$(retcode)m\002"
+            fi
+        else
             echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
-            echo -en "⌄${BEHIND}"
+            echo -en "L"
             echo -en "\001\e[$(retcode)m\002"
         fi
 
