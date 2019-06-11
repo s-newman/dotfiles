@@ -117,10 +117,24 @@ function gitparse() {
         # Count the number of deleted files
         DELETED=$(git status --porcelain | grep -E "^.D.*$" | wc -l)
 
+        # Count the number of unpushed commits
+        AHEAD=$(git rev-list --count @{u}..)
+
+        # Count the number of unpulled commits
+        BEHIND=$(git rev-list --count ..@{u})
+
         ### PRINTING ###
 
         echo -en "─(\001\e[${PRP_FG}m\002"  # Start separator
+
         echo -en "${BRANCH}"        # branch
+
+        if [ "${AHEAD}" -gt "0" ]   # Unpushed commits
+        then
+            echo -en "\001\e[$(retcode)m\002|\001\e[${CYN_FG}m\002"
+            echo -en "⭡${AHEAD}"
+            echo -en "\001\e[$(retcode)m\002"
+        fi
 
         if [ "${STAGED}" -gt "0" ]  # Staged changes
         then
