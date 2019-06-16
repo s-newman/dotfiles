@@ -40,13 +40,23 @@ if ! shopt -oq posix; then
   fi
 fi
 
+##
+# START CUSTOM STUFF
+##
+
+# Nice tab-completion features with git
 if [ -f ~/.git-completion.sh ]; then
 	. ~/.git-completion.sh
 fi
 
-##
-# START CUSTOM STUFF
-##
+# virtualenvwrapper used for python installs that aren't specific to a project,
+# but still shouldn't be installed globally.
+if [ -f /usr/bin/virtualenvwrapper.sh ]
+then
+	export WORKON_HOME=$HOME/envs
+	#export PROJECT_HOME=$HOME/src	# I like having "venv/" in python projects
+	source /usr/bin/virtualenvwrapper.sh
+fi
 
 # Foreground color shortcuts
 BLK_FG='30'
