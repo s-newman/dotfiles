@@ -140,7 +140,7 @@ function gitparse() {
         echo -en "${BRANCH}"        # branch
 
         # Only count unpushed/pulled commits if this branch has an upstream
-        if $(git diff --quiet @{u} &>/dev/null)
+        if $(git config --get branch.${BRANCH}.merge &>/dev/null)
         then
             # Count the number of unpushed commits
             AHEAD=$(git rev-list --count @{u}.. 2>/dev/null)
