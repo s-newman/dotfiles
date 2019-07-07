@@ -225,6 +225,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Add user bin directory
+PATH=${PATH}:~/bin
+
 ##
 # Dank AF prompt
 ##
