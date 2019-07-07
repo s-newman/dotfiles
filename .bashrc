@@ -243,3 +243,5 @@ PS1="${PS1}\\$\[\e[${RST}m\] " # Second line
 
 # Save the exit code for later use
 PROMPT_COMMAND='EXIT_CODE=$?'
+
+export EDITOR='vim'
