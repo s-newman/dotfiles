@@ -1,22 +1,101 @@
-filetype plugin indent on
+"------------------------------------------------------------------------------
+" Plugins
+"------------------------------------------------------------------------------
 
-" Turn on syntax highlighting
-syntax on
+call plug#begin()
 
-" Display tabs as 4 spaces wide
-set tabstop=4
+" git status for each line next to line number
+Plug 'airblade/vim-gitgutter'
+" color schemes based on current pywal theme
+Plug 'dylanaraps/wal.vim'
+" automatic python docstrings with ctrl-l
+Plug 'heavenshell/vim-pydocstring'
+" automatic python formatting
+" NOTE: uses 88-character lines
+Plug 'python/black'
+" file tree in sidebar
+Plug 'scrooloose/nerdtree'
+" running git commands without leaving vim
+Plug 'tpope/vim-fugitive'
+" code completion
+Plug 'valloric/youcompleteme'
+" status bar
+Plug 'vim-airline/vim-airline'
+" improved python syntax highlighting
+Plug 'vim-python/python-syntax'
+" automatic linting and code checking
+Plug 'vim-syntastic/syntastic'
+" git file statuses in nerdtree
+Plug 'xuyuanp/nerdtree-git-plugin'
 
-" Use 4 spaces when auto-indenting
-set shiftwidth=4
+call plug#end()
 
-" Make sure the default color is used
-color default
+"------------------------------------------------------------------------------
+" Vim tweaks
+"------------------------------------------------------------------------------
 
-" Add line numbering
+" automatic code indenting
+set autoindent
+
+" vertical bar to help gauge line lengths
+set colorcolumn=80
+
+" show search results as search query is typed
+set incsearch
+
+" allow the mouse to be used for scrolling and highlighting without affecting
+" pasting into vim with middle-click
+set mouse=nv
+
+" line numbers are needed
 set number
 
-" Add a visual indicator at the 80th column
-set cc=80
+" spellcheck
+set spell
+set spelllang=en_us
 
-" on pressing tab, insert 4 spaces
-" set expandtab
+" improve auto-indenting
+set smarttab
+set smartindent
+
+"------------------------------------------------------------------------------
+" Plugin tweaks
+"------------------------------------------------------------------------------
+
+" show extensions in status bar
+let g:airline#extensions#tabline#enabled = 1
+
+" show dotfiles in nerdtree
+let g:NERDTreeShowHidden = 1
+
+" extra syntax highlighting for python
+let g:python_highlight_all = 1
+
+" syntastic setup
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+"------------------------------------------------------------------------------
+" Commands and auto-commands
+"------------------------------------------------------------------------------
+
+" turn off numbers and git statuses with F1 for easier highlight copying
+map <F1> :set number! <bar> GitGutterToggle <CR>
+
+" easier buffer manipulation 
+map gn :bn<CR>
+map gb :bp<CR>
+map gd :bd<CR>
+
+" only display nerdtree when vim is called without a file
+autocmd StdinReadPre * let s:std_in = 1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"------------------------------------------------------------------------------
+" Other
+"------------------------------------------------------------------------------
+
+filetype plugin on
+colorscheme wal
