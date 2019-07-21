@@ -10,6 +10,9 @@ You need to [install YCM](https://github.com/ycm-core/YouCompleteMe#full-install
 for the YouCompleteMe vim plugin. I usually install it with all available
 completers, because why not?
 
+Also, [vim-plug](https://github.com/junegunn/vim-plug) needs to be installed to
+the `.vim/autoload/` directory.
+
 Notes
 -----
 
