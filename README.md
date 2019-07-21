@@ -1,6 +1,14 @@
-# dotfiles
+dotfiles
+========
 
 Various user configuration files.
+
+Installation
+------------
+
+You need to [install YCM](https://github.com/ycm-core/YouCompleteMe#full-installation-guide)
+for the YouCompleteMe vim plugin. I usually install it with all available
+completers, because why not?
 
 Notes
 -----
