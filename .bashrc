@@ -245,3 +245,16 @@ PS1="${PS1}\\$\[\e[${RST}m\] " # Second line
 PROMPT_COMMAND='EXIT_CODE=$?'
 
 export EDITOR='vim'
+
+export VAULT_ADDR="https://vault.ritsec.cloud:8200"
+export VAULT_SKIP_VERIFY=1
+
+export HEADPHONES_MAC="00:1E:7C:6C:FD:D2"
+
+export GOPATH="${HOME}/go"
+export GOPRIVATE="gitlab.ritsec.cloud/newman/scorestack"
+export PATH="${PATH}:${GOPATH}/bin"
+
+export PKGEXT='.pkg.tar.xz'
+
+source ~/.git-completion.sh

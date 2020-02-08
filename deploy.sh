@@ -8,8 +8,10 @@ CONFIGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 # Files to deploy
 configs=(
 	".bash_aliases"
+        ".bash_profile"
 	".bashrc"
 	".inputrc"
+        ".ledgerrc"
 	".tmux.conf"
 	".tmux-theme"
 	".vimrc"

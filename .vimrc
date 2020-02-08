@@ -8,8 +8,12 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 " color schemes based on current pywal theme
 Plug 'dylanaraps/wal.vim'
+" syntax highlighting for terraform files and easy execution
+Plug 'hashivim/vim-terraform'
 " automatic python docstrings with ctrl-l
 Plug 'heavenshell/vim-pydocstring'
+" support for ledger files
+Plug 'ledger/vim-ledger'
 " automatic python formatting
 " NOTE: uses 88-character lines
 Plug 'python/black'
@@ -24,7 +28,7 @@ Plug 'vim-airline/vim-airline'
 " improved python syntax highlighting
 Plug 'vim-python/python-syntax'
 " automatic linting and code checking
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 " git file statuses in nerdtree
 Plug 'xuyuanp/nerdtree-git-plugin'
 
@@ -88,6 +92,9 @@ map <F1> :set number! <bar> GitGutterToggle <CR>
 map gn :bn<CR>
 map gb :bp<CR>
 map gd :bd<CR>
+
+" Toggle NERDTree
+map gt :NERDTreeToggle<CR>
 
 " only display nerdtree when vim is called without a file
 autocmd StdinReadPre * let s:std_in = 1

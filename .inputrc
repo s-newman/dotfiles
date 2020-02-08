@@ -11,3 +11,6 @@ set menu-complete-display-prefix on
 
 # Case-insensitive tab completion
 set completion-ignore-case on
+
+# VI-style command editing
+set editing-mode vi
