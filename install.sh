@@ -27,4 +27,4 @@ done
 curl -o ${HOME}/.git-completion.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
 # Install vim plugins
-vim +PlugInstall +qall
+echo -ne '\n' | vim +PlugInstall +qall
