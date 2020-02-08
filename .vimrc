@@ -5,32 +5,32 @@
 call plug#begin()
 
 " git status for each line next to line number
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 " color schemes based on current pywal theme
 Plug 'dylanaraps/wal.vim'
 " syntax highlighting for terraform files and easy execution
-Plug 'hashivim/vim-terraform'
+"Plug 'hashivim/vim-terraform'
 " automatic python docstrings with ctrl-l
-Plug 'heavenshell/vim-pydocstring'
+"Plug 'heavenshell/vim-pydocstring'
 " support for ledger files
-Plug 'ledger/vim-ledger'
+"Plug 'ledger/vim-ledger'
 " automatic python formatting
 " NOTE: uses 88-character lines
-Plug 'python/black'
+"Plug 'python/black'
 " file tree in sidebar
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 " running git commands without leaving vim
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 " code completion
-Plug 'valloric/youcompleteme'
+"Plug 'valloric/youcompleteme'
 " status bar
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 " improved python syntax highlighting
-Plug 'vim-python/python-syntax'
+"Plug 'vim-python/python-syntax'
 " automatic linting and code checking
 "Plug 'vim-syntastic/syntastic'
 " git file statuses in nerdtree
-Plug 'xuyuanp/nerdtree-git-plugin'
+"Plug 'xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
