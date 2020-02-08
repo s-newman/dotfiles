@@ -20,5 +20,5 @@ configs=(
 
 # Backup and link the files
 for config in ${configs[*]}; do
-	ln -s ${CONFIGDIR}/${config} ${HOME}/${config}
+	ln -fs ${CONFIGDIR}/${config} ${HOME}/${config}
 done
