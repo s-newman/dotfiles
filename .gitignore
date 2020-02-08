@@ -2,4 +2,3 @@
 .vim/plugged/
 .vim/black/
 .vim/bundle/
-.vim/autoload/plug.vim
