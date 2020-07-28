@@ -255,6 +255,8 @@ export GOPATH="${HOME}/go"
 export GOPRIVATE="gitlab.ritsec.cloud/newman/scorestack"
 export PATH="${PATH}:${GOPATH}/bin"
 
+export PATH="${PATH}:${HOME}/.cargo/bin"
+
 export PKGEXT='.pkg.tar.xz'
 
 source ~/.git-completion.sh
