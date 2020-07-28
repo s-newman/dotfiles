@@ -1,0 +1,6 @@
+font:
+  normal:
+    family: Cascadia Code
+
+env:
+  TERM: xterm-256color

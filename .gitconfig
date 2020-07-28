@@ -1,0 +1,13 @@
+[user]
+	email = sxn6296@rit.edu
+	name = Sean Newman
+
+[url "ssh://git@gitlab.ritsec.cloud/"]
+	insteadOf = https://gitlab.ritsec.cloud/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	ff = only

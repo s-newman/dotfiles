@@ -1,0 +1,70 @@
+# Sway configuration file
+# Read `man 5 sway` for a complete reference.
+
+# Custom colors from wal utility
+include "$HOME/.cache/wal/colors-sway"
+
+###
+#	VARIABLES
+###
+
+# Set modifier key to the logo key
+set $mod Mod4
+# set $mod Mod1		# Alternatively, use the Alt key
+
+# Use vim-style direction keys
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Set terminal emulator
+set $term alacritty
+
+# Set application launcher
+#set $menu dmenu_path | dmenu | xargs swaymsg exec
+set $menu "rofi -combi-modi drun,ssh,run -show combi -show-icons"
+
+###
+#	INCLUDES
+###
+
+# Output configurations
+include "$HOME/.config/sway/output-config"
+
+# Key binding configurations
+include "$HOME/.config/sway/keybind-config"
+
+###
+#	STATUS BAR
+#
+# 	Read `man 5 sway-bar` for more information about this section.
+###
+
+bar {
+    swaybar_command waybar
+}
+
+###
+#	OTHER
+###
+
+# Get rid of title bars
+default_border pixel 1
+
+# Audio Settings 
+bindsym XF86AudioRaiseVolume exec amixer set Master 3%+
+bindsym XF86AudioLowerVolume exec amixer set Master 3%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+# Capture / Mic Volume
+bindsym Ctrl+XF86AudioRaiseVolume exec amixer set Capture 3%+
+bindsym Ctrl+XF86AudioLowerVolume exec amixer set Capture 3%-
+bindsym XF86AudioMicMute exec amixer set Capture toggle 
+
+# Brightness Settings
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Screenshot keybind
+bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/pics/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
