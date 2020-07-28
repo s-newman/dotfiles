@@ -23,8 +23,5 @@ for config in ${configs[*]}; do
 	ln -fs ${CONFIGDIR}/${config} ${HOME}/${config}
 done
 
-# Download bash completion file
-curl -o ${HOME}/.git-completion.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-
 # Install vim plugins
 echo -ne '\n' | vim +PlugInstall +qall
