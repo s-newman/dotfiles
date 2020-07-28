@@ -104,13 +104,17 @@
     "[markdown]": {
         "editor.tabSize": 2
     },
-    // Python
+    // --- Python -------------------------------------------------------------
+    // Autoformat with Black
+    "python.formatting.provider": "black",
+    // Enable flake8 and mypy linting, but don't lint with pylint
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Path": "/usr/bin/flake8",
     "python.linting.mypyEnabled": true,
     "python.linting.mypyPath": "/usr/bin/mypy",
     "python.linting.pylintEnabled": false,
     "[python]": {
+        // Customize the rulers to look right with Black
         "editor.rulers": [
             88
         ]
