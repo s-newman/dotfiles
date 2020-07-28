@@ -264,3 +264,7 @@ source ~/.git-completion.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Required for third display on docking station to work
+# https://github.com/swaywm/sway/issues/5008
+export WLR_DRM_NO_MODIFIERS=1
