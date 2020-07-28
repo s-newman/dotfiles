@@ -1,0 +1,151 @@
+{
+    //
+    // ------------------------------------------------------------------------
+    // General settings
+    // ------------------------------------------------------------------------
+    // Breadcrumbs are pretty nice even if I don't use them much
+    "breadcrumbs.enabled": true,
+    // I'll put breakpoints where I want even if it doesn't make sense
+    "debug.allowBreakpointsEverywhere": true,
+    // Don't really remember this one but we'll keep it
+    "explorer.confirmDragAndDrop": false,
+    // Vagrantfiles are ruby scripts because of course they are
+    "files.associations": {
+        "Vagrantfile": "ruby"
+    },
+    // Let me compose my own commits in peace thank you
+    "git.suggestSmartCommit": false,
+    // Specify bash as integrated shell just in case there's multiple
+    "terminal.integrated.shell.linux": "/bin/bash",
+    // Hit alt to open menu bar, hit alt again to close it
+    "window.menuBarVisibility": "toggle",
+    //
+    // ------------------------------------------------------------------------
+    // Workbench customizations
+    // ------------------------------------------------------------------------
+    // Use orange everywhere
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#FF7042",
+        "list.activeSelectionForeground": "#FF7042",
+        "list.inactiveSelectionForeground": "#FF7042",
+        "list.highlightForeground": "#FF7042",
+        "scrollbarSlider.activeBackground": "#FF704250",
+        "editorSuggestWidget.highlightForeground": "#FF7042",
+        "textLink.foreground": "#FF7042",
+        "progressBar.background": "#FF7042",
+        "pickerGroup.foreground": "#FF7042",
+        "tab.activeBorder": "#FF7042",
+        "notificationLink.foreground": "#FF7042",
+        "editorWidget.resizeBorder": "#FF7042",
+        "editorWidget.border": "#FF7042",
+        "settings.modifiedItemIndicator": "#FF7042",
+        "settings.headerForeground": "#FF7042",
+        "panelTitle.activeBorder": "#FF7042",
+        "breadcrumb.activeSelectionForeground": "#FF7042",
+        "menu.selectionForeground": "#FF7042",
+        "menubar.selectionForeground": "#FF7042"
+    },
+    // Use the really nice Ayu theme
+    "workbench.colorTheme": "Ayu Dark Bordered",
+    // Use the material icons extension for file icons
+    "workbench.iconTheme": "material-icon-theme",
+    //
+    // ------------------------------------------------------------------------
+    // Editor customizations
+    // ------------------------------------------------------------------------
+    // Configure rulers so I know when I'm writing a line too long
+    "editor.rulers": [
+        79,
+        99,
+        119
+    ],
+    // Set the font size just right
+    "editor.fontSize": 13,
+    // Minimap just takes up screen real estate
+    "editor.minimap.enabled": false,
+    // Autoformat code when possible
+    "editor.formatOnSave": true,
+    // Customize font
+    "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    // Font ligatures combine adjacent characters into a single cool character
+    "editor.fontLigatures": true,
+    "editor.suggestSelection": "first",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                // Turn off italic comments
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    //
+    // ------------------------------------------------------------------------
+    // Language-specific settings
+    // ------------------------------------------------------------------------
+    // C/C++
+    "C_Cpp.updateChannel": "Insiders",
+    // Golang
+    "go.formatTool": "goimports",
+    // HTML
+    "[html]": {
+        "editor.tabSize": 2
+    },
+    // JavaScript
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 2
+    },
+    // Markdown
+    "[markdown]": {
+        "editor.tabSize": 2
+    },
+    // Python
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "/usr/bin/flake8",
+    "python.linting.mypyEnabled": true,
+    "python.linting.mypyPath": "/usr/bin/mypy",
+    "python.linting.pylintEnabled": false,
+    "[python]": {
+        "editor.rulers": [
+            88
+        ]
+    },
+    // Rust
+    "rust.clippy_preference": "on",
+    // Shell scripts
+    "[shellscript]": {
+        "editor.tabSize": 2
+    },
+    // Terraform
+    "[tf]": {
+        "editor.tabSize": 2
+    },
+    // TypeScript
+    "[typescript]": {
+        "editor.tabSize": 2
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 2
+    },
+    // YAML
+    "[yaml]": {
+        "editor.formatOnSave": false
+    },
+    //
+    // ------------------------------------------------------------------------
+    // Extension settings
+    // ------------------------------------------------------------------------
+    // Generate Python docstrings compatible with sphinx.ext.autodoc
+    "autoDocstring.docstringFormat": "sphinx",
+    // Git repos are stored under ~/src; need to specify absolute path though
+    "projectManager.git.baseFolders": [
+        "/home/sean/src"
+    ],
+    // Customize remote containers with these dotfiles
+    "remote.containers.dotfiles.repository": "s-newman/dotfiles"
+}

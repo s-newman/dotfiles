@@ -21,6 +21,9 @@ ln -fs ${CONFIGDIR}/.tmux.conf ${HOME}/.tmux.conf
 ln -fs ${CONFIGDIR}/.vimrc ${HOME}/.vimrc
 ln -fsn ${CONFIGDIR}/.vim ${HOME}/.vim
 
+# vscode
+ln -fs ${CONFIGDIR}/settings.json ${HOME}/.config/Code/User/settings.json
+
 if [ "$1" = "all" ]
 then
 	# Thinkfan
