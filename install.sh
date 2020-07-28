@@ -2,26 +2,24 @@
 # Deploys the configuration files by creating soft links
 
 # Figure out where our configs are located
-# NOTE: this requires that this (deploy.sh) script is NOT a link!
+# NOTE: this requires that this (install.sh) script is NOT a link!
 CONFIGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
-# Files to deploy
-configs=(
-	".bash_aliases"
-        ".bash_profile"
-	".bashrc"
-	".inputrc"
-        ".ledgerrc"
-	".tmux.conf"
-	".tmux-theme"
-	".vimrc"
-	".vim"
-)
+# Bash
+ln -fs ${CONFIGDIR}/.bash_aliases ${HOME}/.bash_aliases
+ln -fs ${CONFIGDIR}/.bash_profile ${HOME}/.bash_profile
+ln -fs ${CONFIGDIR}/.bashrc ${HOME}/.bashrc
 
-# Backup and link the files
-for config in ${configs[*]}; do
-	ln -fs ${CONFIGDIR}/${config} ${HOME}/${config}
-done
+# GNU Readline
+ln -fs ${CONFIGDIR}/.inputrc ${HOME}/.inputrc
 
-# Install vim plugins
-echo -ne '\n' | vim +PlugInstall +qall
+# Tmux
+ln -fs ${CONFIGDIR}/.tmux-theme ${HOME}/.tmux-theme
+ln -fs ${CONFIGDIR}/.tmux.conf ${HOME}/.tmux.conf
+
+# Vim
+ln -fs ${CONFIGDIR}/.vimrc ${HOME}/.vimrc
+ln -fs ${CONFIGDIR}/.vim/ ${HOME}/.vim
+
+# Thinkfan
+ln -fs ${CONFIGDIR}/thinkfan.conf /etc/thinkfan.conf
