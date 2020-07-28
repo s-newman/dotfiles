@@ -6,8 +6,6 @@ call plug#begin()
 
 " color schemes based on current pywal theme
 Plug 'dylanaraps/wal.vim'
-" automatic linting and code checking
-Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
@@ -38,16 +36,6 @@ set spelllang=en_us
 " improve auto-indenting
 set smarttab
 set smartindent
-
-"------------------------------------------------------------------------------
-" Plugin tweaks
-"------------------------------------------------------------------------------
-
-" syntastic setup
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
 
 "------------------------------------------------------------------------------
 " Commands and auto-commands
