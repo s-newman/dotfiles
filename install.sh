@@ -19,7 +19,7 @@ ln -fs ${CONFIGDIR}/.tmux.conf ${HOME}/.tmux.conf
 
 # Vim
 ln -fs ${CONFIGDIR}/.vimrc ${HOME}/.vimrc
-ln -fs ${CONFIGDIR}/.vim ${HOME}/.vim
+ln -fsn ${CONFIGDIR}/.vim ${HOME}/.vim
 
 if [ "$1" = "all" ]
 then
