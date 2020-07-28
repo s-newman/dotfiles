@@ -1,18 +1,3 @@
-"------------------------------------------------------------------------------
-" Plugins
-"------------------------------------------------------------------------------
-
-call plug#begin()
-
-" color schemes based on current pywal theme
-Plug 'dylanaraps/wal.vim'
-
-call plug#end()
-
-"------------------------------------------------------------------------------
-" Vim tweaks
-"------------------------------------------------------------------------------
-
 " automatic code indenting
 set autoindent
 
@@ -29,26 +14,17 @@ set mouse=nv
 " line numbers are needed
 set number
 
-" spellcheck
-set spell
-set spelllang=en_us
-
 " improve auto-indenting
 set smarttab
 set smartindent
 
-"------------------------------------------------------------------------------
-" Commands and auto-commands
-"------------------------------------------------------------------------------
-
-" easier buffer manipulation 
-map gn :bn<CR>
-map gb :bp<CR>
-map gd :bd<CR>
-
-"------------------------------------------------------------------------------
-" Other
-"------------------------------------------------------------------------------
-
+" load filetype-specific settings
 filetype plugin on
-colorscheme wal
+
+" enable syntax highlighting
+syntax on
+
+" use ayu dark theme
+set termguicolors
+let ayucolor="dark"
+colorscheme ayu
