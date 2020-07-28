@@ -19,7 +19,10 @@ ln -fs ${CONFIGDIR}/.tmux.conf ${HOME}/.tmux.conf
 
 # Vim
 ln -fs ${CONFIGDIR}/.vimrc ${HOME}/.vimrc
-ln -fs ${CONFIGDIR}/.vim/ ${HOME}/.vim
+ln -fs ${CONFIGDIR}/.vim ${HOME}/.vim
 
-# Thinkfan
-ln -fs ${CONFIGDIR}/thinkfan.conf /etc/thinkfan.conf
+if [ "$1" = "all" ]
+then
+	# Thinkfan
+	sudo ln -fs ${CONFIGDIR}/thinkfan.conf /etc/thinkfan.conf
+fi
