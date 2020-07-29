@@ -15,6 +15,9 @@
     },
     // Let me compose my own commits in peace thank you
     "git.suggestSmartCommit": false,
+    // Disable telemetry
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
     // Specify bash as integrated shell just in case there's multiple
     "terminal.integrated.shell.linux": "/bin/bash",
     // Hit alt to open menu bar, hit alt again to close it
@@ -78,6 +81,17 @@
                 "settings": {
                     "fontStyle": ""
                 }
+            },
+            {
+                // Fix python docstring colors
+                "scope": [
+                    "string.quoted.docstring.multi.python",
+                    "string.quoted.docstring.multi.python punctuation.definition.string.begin.python",
+                    "string.quoted.docstring.multi.python punctuation.definition.string.end.python",
+                ],
+                "settings": {
+                    "foreground": "#5C6370"
+                }
             }
         ]
     },
@@ -100,6 +114,11 @@
     "[javascriptreact]": {
         "editor.tabSize": 2
     },
+    // --- JSON ---------------------------------------------------------------
+    "[json]": {
+        "editor.tabSize": 2,
+        "editor.wordWrap": "on"
+    },
     // --- Markdown -----------------------------------------------------------
     "[markdown]": {
         "editor.tabSize": 2
@@ -118,6 +137,15 @@
         "editor.rulers": [
             88
         ]
+    },
+    // --- ReStructuredText ---------------------------------------------------
+    "[restructuredtext]": {
+        "editor.tabSize": 3,
+        "editor.wordWrap": "on"
+    },
+    // --- Ruby ---------------------------------------------------------------
+    "[ruby]": {
+        "editor.tabSize": 2
     },
     // --- Rust ---------------------------------------------------------------
     "rust.clippy_preference": "on",
@@ -138,7 +166,8 @@
     },
     // --- YAML ---------------------------------------------------------------
     "[yaml]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
     },
     //
     // ------------------------------------------------------------------------
@@ -148,8 +177,11 @@
     "autoDocstring.docstringFormat": "sphinx",
     // Git repos are stored under ~/src; need to specify absolute path though
     "projectManager.git.baseFolders": [
-        "/home/sean/src"
+        "$home/src"
     ],
     // Customize remote containers with these dotfiles
-    "remote.containers.dotfiles.repository": "s-newman/dotfiles"
+    "remote.containers.dotfiles.repository": "s-newman/dotfiles",
+    // Show test coverage on the lines, not the gutters
+    "coverage-gutters.showGutterCoverage": false,
+    "coverage-gutters.showLineCoverage": true
 }
