@@ -25,6 +25,9 @@ ln -fs ${CONFIGDIR}/.inputrc ${HOME}/.inputrc
 # GTK 3
 ln -fsn ${CONFIGDIR}/gtk-3.0 ${HOME}/.config/gtk-3.0
 
+# Pacman
+ln -fsn ${CONFIGDIR}/pacman ${HOME}/.config/pacman
+
 # Sway
 ln -fsn ${CONFIGDIR}/sway ${HOME}/.config/sway
 
