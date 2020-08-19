@@ -42,6 +42,9 @@ ln -fs ${CONFIGDIR}/settings.json ${HOME}/.config/Code/User/settings.json
 # Waybar
 ln -fsn ${CONFIGDIR}/waybar ${HOME}/.config/waybar
 
+# XDG
+ln -fs ${CONFIGDIR}/user-dirs.dirs ${HOME}/.config/user-dirs.dirs
+
 if [ "$1" = "all" ]
 then
 	# Thinkfan
