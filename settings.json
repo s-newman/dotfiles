@@ -87,7 +87,7 @@
                 "scope": [
                     "string.quoted.docstring.multi.python",
                     "string.quoted.docstring.multi.python punctuation.definition.string.begin.python",
-                    "string.quoted.docstring.multi.python punctuation.definition.string.end.python",
+                    "string.quoted.docstring.multi.python punctuation.definition.string.end.python"
                 ],
                 "settings": {
                     "foreground": "#5C6370"
@@ -183,5 +183,7 @@
     "remote.containers.dotfiles.repository": "s-newman/dotfiles",
     // Show test coverage on the lines, not the gutters
     "coverage-gutters.showGutterCoverage": false,
-    "coverage-gutters.showLineCoverage": true
+    "coverage-gutters.showLineCoverage": true,
+    // I don't know what this is, but VSCode automatically added it
+    "todo-tree.tree.showScanModeButton": false
 }
