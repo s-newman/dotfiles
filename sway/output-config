@@ -5,7 +5,7 @@
 ###
 
 # Set desktop background
-set $background "$HOME/pics/papes/earthmap-2560x1600.png"
+set $background $HOME/pics/papes/earthmap-2560x1600.png
 output * bg  $background fill
 
 # Choose random background for lockscreen from papes folder 
