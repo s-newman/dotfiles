@@ -180,6 +180,7 @@
     "projectManager.git.baseFolders": [
         "$home/src"
     ],
+    "projectManager.git.maxDepthRecursion": 1,
     // Customize remote containers with these dotfiles
     "remote.containers.dotfiles.repository": "s-newman/dotfiles",
     // Show test coverage on the lines, not the gutters
