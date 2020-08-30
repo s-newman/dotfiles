@@ -28,6 +28,9 @@ ln -fsn ${CONFIGDIR}/gtk-3.0 ${HOME}/.config/gtk-3.0
 # Pacman
 ln -fsn ${CONFIGDIR}/pacman ${HOME}/.config/pacman
 
+# Rofi
+ln -fsn ${CONFIGDIR}/rofi ${HOME}/.config/rofi
+
 # Sway
 ln -fsn ${CONFIGDIR}/sway ${HOME}/.config/sway
 
