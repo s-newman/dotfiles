@@ -2,8 +2,8 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Roboto;
-    font-size: 13px;
+    font-family: Cascadia Code;
+    font-size: 12px;
     min-height: 0;
 }
 
