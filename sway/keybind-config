@@ -16,6 +16,9 @@ bindsym $mod+d exec $menu
 # Start emoji selector menu
 bindsym $mod+period exec rofimoji -c
 
+# Start calc
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
+
 # The floating modifier does the following things:
 #	- Drag floating windows with $mod + left mouse button
 #	- Resize floating windows with $mod + right mouse button
