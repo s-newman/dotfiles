@@ -5,6 +5,9 @@
 # NOTE: this requires that this (install.sh) script is NOT a link!
 CONFIGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
+# Ensure ~/.config exists
+mkdir -p ${HOME}/.config
+
 # Alacritty
 ln -fsn ${CONFIGDIR}/alacritty ${HOME}/.config/alacritty
 
