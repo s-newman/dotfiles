@@ -31,6 +31,9 @@ ln -fsn ${CONFIGDIR}/gtk-3.0 ${HOME}/.config/gtk-3.0
 # Pacman
 ln -fsn ${CONFIGDIR}/pacman ${HOME}/.config/pacman
 
+# Radare2
+ln -fsn ${CONFIGDIR}/.radare2rc ${HOME}/.radare2rc
+
 # Rofi
 ln -fsn ${CONFIGDIR}/rofi ${HOME}/.config/rofi
 
