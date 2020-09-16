@@ -266,3 +266,9 @@ export NVM_DIR="$HOME/.nvm"
 # Required for third display on docking station to work
 # https://github.com/swaywm/sway/issues/5008
 export WLR_DRM_NO_MODIFIERS=1
+
+# Required for Zoom screen sharing (only works in browser)
+# https://github.com/emersion/xdg-desktop-portal-wlr/blob/master/README.md#running
+# https://github.com/emersion/xdg-desktop-portal-wlr/wiki/FAQ#when-i-try-to-share-my-screen-in-the-browser-i-get-nothing--a-black-screen
+XDG_SESSION_TYPE=wayland
+XDG_CURRENT_DESKTOP=sway
