@@ -22,6 +22,8 @@
     "terminal.integrated.shell.linux": "/bin/bash",
     // Hit alt to open menu bar, hit alt again to close it
     "window.menuBarVisibility": "toggle",
+    // Specify the zoom level (this gets set automatically if you zoom out and back in again)
+    "window.zoomLevel": 0,
     //
     // ------------------------------------------------------------------------
     // Workbench customizations
