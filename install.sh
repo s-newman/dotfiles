@@ -16,6 +16,9 @@ ln -fs ${CONFIGDIR}/.bash_aliases ${HOME}/.bash_aliases
 ln -fs ${CONFIGDIR}/.bash_profile ${HOME}/.bash_profile
 ln -fs ${CONFIGDIR}/.bashrc ${HOME}/.bashrc
 
+# Environment variables
+ln -fs ${CONFIGDIR}/environment.d ${HOME}/.config/environment.d
+
 # Flake8
 ln -fs ${CONFIGDIR}/.flake8 ${HOME}/.config/flake8
 
