@@ -1,2 +1,6 @@
 # Ayu theme
 eco ayu
+
+# Enable Unicode support
+e scr.utf8=true
+e scr.utf8.curvy=true
