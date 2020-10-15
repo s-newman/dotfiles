@@ -19,5 +19,5 @@ alias docker-reset='docker-clean && docker-rmimages'
 # Virtual environment nonsense
 alias activate='source ~/bin/activator.sh'
 
-# Kubernetes
+# Alias kubectl to be easier to type
 alias k='kubectl'

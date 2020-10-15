@@ -221,3 +221,11 @@ PROMPT_COMMAND='EXIT_CODE=$?'
 
 # NVM
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+
+# kubectl completion
+[ -f /usr/bin/kubectl ] && source <(kubectl completion bash)
+
+# --- Other stuff -------------------------------------------------------------
+
+# Make sure kubectl completion works with the alias
+complete -F __start_kubectl k
