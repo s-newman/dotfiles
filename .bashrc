@@ -1,3 +1,5 @@
+# --- Default content ---------------------------------------------------------
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -29,34 +31,7 @@ shopt -s checkwinsize
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-##
-# START CUSTOM STUFF
-##
-
-# Nice tab-completion features with git
-if [ -f ~/.git-completion.sh ]; then
-	. ~/.git-completion.sh
-fi
-
-# virtualenvwrapper used for python installs that aren't specific to a project,
-# but still shouldn't be installed globally.
-if [ -f /usr/bin/virtualenvwrapper.sh ]
-then
-	export WORKON_HOME=$HOME/envs
-	#export PROJECT_HOME=$HOME/src	# I like having "venv/" in python projects
-	source /usr/bin/virtualenvwrapper.sh
-fi
+# --- Prompt customization ----------------------------------------------------
 
 # Foreground color shortcuts
 BLK_FG='30'
@@ -220,55 +195,29 @@ function gitparse() {
     fi
 }
 
-# Aliases, breh
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# Add user bin directory
-PATH=${PATH}:~/bin
-
-##
-# Dank AF prompt
-##
-# Make sure EXIT_CODE is set
-PS1="\[\e[${BLD};\$(retcode)m\]┌("       # Start of first line
-PS1="${PS1}\[\e[${PRP_FG}m\]\u@\h"              # username@hostname
-PS1="${PS1}\[\e[\$(retcode)m\])─("         # Separator
-PS1="${PS1}\[\e[${PRP_FG}m\]\w"         # Directory
-PS1="${PS1}\[\e[\$(retcode)m\])"      # Separator
-PS1="${PS1}\$(gitparse)"        # Git information
-PS1="${PS1}\n\[\e[${BLD};\$(retcode)m\]└─"       # Start of second line
-PS1="${PS1}\\$\[\e[${RST}m\] " # Second line
+# Set prompt variables
+PS1="\[\e[${BLD};\$(retcode)m\]┌("          # Start of first line
+PS1="${PS1}\[\e[${PRP_FG}m\]\u@\h"          # username@hostname
+PS1="${PS1}\[\e[\$(retcode)m\])─("          # Separator
+PS1="${PS1}\[\e[${PRP_FG}m\]\w"             # Directory
+PS1="${PS1}\[\e[\$(retcode)m\])"            # Separator
+PS1="${PS1}\$(gitparse)"                    # Git information
+PS1="${PS1}\n\[\e[${BLD};\$(retcode)m\]└─"  # Start of second line
+PS1="${PS1}\\$\[\e[${RST}m\] "              # Second line
 
 # Save the exit code for later use
 PROMPT_COMMAND='EXIT_CODE=$?'
 
-export EDITOR='vim'
+# --- Shell extension scripts -------------------------------------------------
 
-export VAULT_ADDR="https://vault.ritsec.cloud:8200"
-export VAULT_SKIP_VERIFY=1
+# Aliases
+[ -f ~/.bash_aliases ] && ~/.bash_aliases
 
-export HEADPHONES_MAC="00:1E:7C:6C:FD:D2"
+# Generic tab completion support
+[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-export GOPATH="${HOME}/go"
-export GOPRIVATE="gitlab.ritsec.cloud/newman/scorestack"
-export PATH="${PATH}:${GOPATH}/bin"
+# Git tab completion
+[ -f ~/.git-completion.sh ] && ~/.git-completion.sh
 
-export PATH="${PATH}:${HOME}/.cargo/bin"
-
-export XDG_CONFIG_HOME="${HOME}/.config"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Required for third display on docking station to work
-# https://github.com/swaywm/sway/issues/5008
-export WLR_DRM_NO_MODIFIERS=1
-
-# Required for Zoom screen sharing (only works in browser)
-# https://github.com/emersion/xdg-desktop-portal-wlr/blob/master/README.md#running
-# https://github.com/emersion/xdg-desktop-portal-wlr/wiki/FAQ#when-i-try-to-share-my-screen-in-the-browser-i-get-nothing--a-black-screen
-XDG_SESSION_TYPE=wayland
-XDG_CURRENT_DESKTOP=sway
+# NVM
+[ -f /usr/share/nvm/init-nvm.sh ] && . /usr/share/nvm/init-nvm.sh
