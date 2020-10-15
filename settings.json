@@ -7,6 +7,10 @@
     "breadcrumbs.enabled": true,
     // I'll put breakpoints where I want even if it doesn't make sense
     "debug.allowBreakpointsEverywhere": true,
+    // Display trailing whitespace so it can be removed
+    "editor.renderWhitespace": "trailing",
+    // Automatically fix unusual line terminators
+    "editor.unusualLineTerminators": "auto",
     // Don't really remember this one but we'll keep it
     "explorer.confirmDragAndDrop": false,
     // Vagrantfiles are ruby scripts because of course they are
@@ -172,12 +176,21 @@
         "editor.formatOnSave": false,
         "editor.tabSize": 2
     },
+    // --- Bind9 DNS Zone -----------------------------------------------------
+    "[zone]": {
+        "editor.tabSize": 8,
+        "editor.insertSpaces": false
+    },
     //
     // ------------------------------------------------------------------------
     // Extension settings
     // ------------------------------------------------------------------------
     // Generate Python docstrings compatible with sphinx.ext.autodoc
     "autoDocstring.docstringFormat": "sphinx",
+    // Default GitLens settings
+    "gitlens.codeLens.enabled": false,
+    "gitlens.defaultDateFormat": "YYYY MMMM Do - h:mma",
+    "gitlens.defaultDateShortFormat": "YYYY MMM D",
     // Git repos are stored under ~/src; need to specify absolute path though
     "projectManager.git.baseFolders": [
         "$home/src"
