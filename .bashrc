@@ -211,13 +211,13 @@ PROMPT_COMMAND='EXIT_CODE=$?'
 # --- Shell extension scripts -------------------------------------------------
 
 # Aliases
-[ -f ~/.bash_aliases ] && ~/.bash_aliases
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # Generic tab completion support
-[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+[ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
 
 # Git tab completion
-[ -f ~/.git-completion.sh ] && ~/.git-completion.sh
+[ -f ~/.git-completion.sh ] && source ~/.git-completion.sh
 
 # NVM
-[ -f /usr/share/nvm/init-nvm.sh ] && . /usr/share/nvm/init-nvm.sh
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
