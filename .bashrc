@@ -225,6 +225,37 @@ PROMPT_COMMAND='EXIT_CODE=$?'
 # kubectl completion
 [ -f /usr/bin/kubectl ] && source <(kubectl completion bash)
 
+# --- Environment variables ---------------------------------------------------
+
+# Set default editor
+export EDITOR=vim
+
+# Add user bin directory to PATH for shell scripts
+export PATH=${PATH}:~/bin
+
+# Configure GOPATH
+export GOPATH=${HOME}/go
+export PATH=${PATH}:${GOPATH}/bin
+
+# Add cargo installation directory for running locally-built rust binaries
+export PATH=${PATH}:${HOME}/.cargo/bin
+
+# Set configuration file directory
+export XDG_CONFIG_HOME=${HOME}/.config
+
+# Required for third display on docking station to work
+# https://github.com/swaywm/sway/issues/5008
+export WLR_DRM_NO_MODIFIERS=1
+
+# Required for Zoom screen sharing (only works in browser)
+# https://github.com/emersion/xdg-desktop-portal-wlr/blob/master/README.md#running
+# https://github.com/emersion/xdg-desktop-portal-wlr/wiki/FAQ#when-i-try-to-share-my-screen-in-the-browser-i-get-nothing--a-black-screen
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
+
+# Required for Jetbrains IDEs and other Java AWT programs to display properly
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # --- Other stuff -------------------------------------------------------------
 
 # Make sure kubectl completion works with the alias
