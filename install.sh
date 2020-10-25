@@ -40,6 +40,9 @@ ln -fsn ${CONFIGDIR}/.radare2rc ${HOME}/.radare2rc
 # Rofi
 ln -fsn ${CONFIGDIR}/rofi ${HOME}/.config/rofi
 
+# Starship
+ln -fs ${CONFIGDIR}/starship.toml ${HOME}/.config/starship.toml
+
 # Sway
 ln -fsn ${CONFIGDIR}/sway ${HOME}/.config/sway
 
