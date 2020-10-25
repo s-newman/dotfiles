@@ -22,6 +22,8 @@
     // Disable telemetry
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    // Use Alacritty as the binary for the shell
+    "terminal.external.linuxExec": "/usr/bin/alacritty",
     // Specify bash as integrated shell just in case there's multiple
     "terminal.integrated.shell.linux": "/bin/bash",
     // Hit alt to open menu bar, hit alt again to close it
@@ -75,7 +77,7 @@
     // Autoformat code when possible
     "editor.formatOnSave": true,
     // Customize font
-    "editor.fontFamily": "'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'CaskaydiaCove Nerd Font', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     // Font ligatures combine adjacent characters into a single cool character
     "editor.fontLigatures": true,
     "editor.suggestSelection": "first",
@@ -127,7 +129,8 @@
     },
     // --- Markdown -----------------------------------------------------------
     "[markdown]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "rewrap.autoWrap.enabled": false
     },
     // --- Python -------------------------------------------------------------
     // Autoformat with Black
@@ -187,6 +190,11 @@
     // ------------------------------------------------------------------------
     // Generate Python docstrings compatible with sphinx.ext.autodoc
     "autoDocstring.docstringFormat": "sphinx",
+    // Show test coverage on the lines, not the gutters
+    "coverage-gutters.showGutterCoverage": false,
+    "coverage-gutters.showLineCoverage": true,
+    // Don't show a confirmation window to sync changes
+    "git.confirmSync": false,
     // Default GitLens settings
     "gitlens.codeLens.enabled": false,
     "gitlens.defaultDateFormat": "YYYY MMMM Do - h:mma",
@@ -198,9 +206,8 @@
     "projectManager.git.maxDepthRecursion": 1,
     // Customize remote containers with these dotfiles
     "remote.containers.dotfiles.repository": "s-newman/dotfiles",
-    // Show test coverage on the lines, not the gutters
-    "coverage-gutters.showGutterCoverage": false,
-    "coverage-gutters.showLineCoverage": true,
+    // Automatically wrap comments as they get typed out
+    "rewrap.autoWrap.enabled": true,
     // I don't know what this is, but VSCode automatically added it
     "todo-tree.tree.showScanModeButton": false
 }
