@@ -74,12 +74,15 @@ export PATH=${PATH}:${GOPATH}/bin
 # Add cargo installation directory for running locally-built rust binaries
 export PATH=${PATH}:${HOME}/.cargo/bin
 
-# Set configuration file directory
-export XDG_CONFIG_HOME=${HOME}/.config
-
 # Required for third display on docking station to work
 # https://github.com/swaywm/sway/issues/5008
 export WLR_DRM_NO_MODIFIERS=1
+
+# Vault configuration
+export VAULT_ADDR=https://vault.altoidtin.com
+
+# Set configuration file directory
+export XDG_CONFIG_HOME=${HOME}/.config
 
 # Required for Zoom screen sharing (only works in browser)
 # https://github.com/emersion/xdg-desktop-portal-wlr/blob/master/README.md#running
@@ -94,3 +97,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Make sure kubectl completion works with the alias
 complete -F __start_kubectl k
+
+# Enable vault autocompletion
+complete -C /usr/bin/vault vault

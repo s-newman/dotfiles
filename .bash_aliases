@@ -21,3 +21,6 @@ alias activate='source ~/bin/activator.sh'
 
 # Alias kubectl to be easier to type
 alias k='kubectl'
+
+# Make it easier to manage cloud configurations
+alias gcon='gcloud config configurations'
