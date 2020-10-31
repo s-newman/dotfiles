@@ -8,6 +8,9 @@ CONFIGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 # Ensure ~/.config exists
 mkdir -p ${HOME}/.config
 
+# Ensure ~/.cargo exists
+mkdir -p ${HOME}/.cargo
+
 # Alacritty
 ln -fsn ${CONFIGDIR}/alacritty ${HOME}/.config/alacritty
 
@@ -15,6 +18,9 @@ ln -fsn ${CONFIGDIR}/alacritty ${HOME}/.config/alacritty
 ln -fs ${CONFIGDIR}/.bash_aliases ${HOME}/.bash_aliases
 ln -fs ${CONFIGDIR}/.bash_profile ${HOME}/.bash_profile
 ln -fs ${CONFIGDIR}/.bashrc ${HOME}/.bashrc
+
+# Cargo
+ln -fs ${CONFIGDIR}/cargo/config.toml ${HOME}/.cargo/config.toml
 
 # Environment variables
 ln -fs ${CONFIGDIR}/environment.d ${HOME}/.config/environment.d
