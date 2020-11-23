@@ -33,6 +33,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # --- Prompt customization ----------------------------------------------------
 
+# Add cargo installation directory for running locally-built rust binaries.
+# Need to set this here instead of the environment variables section so that
+# starship is found properly if installed via cargo.
+export PATH=${PATH}:${HOME}/.cargo/bin
+
 # Load starship prompt
 if [ -x "$(command -v starship)" ]
 then
@@ -70,9 +75,6 @@ export PATH=${PATH}:~/bin
 # Configure GOPATH
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin
-
-# Add cargo installation directory for running locally-built rust binaries
-export PATH=${PATH}:${HOME}/.cargo/bin
 
 # Required for third display on docking station to work
 # https://github.com/swaywm/sway/issues/5008
