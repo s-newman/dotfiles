@@ -67,4 +67,4 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Screenshot keybind
-bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/pics/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+bindsym $mod+Shift+s exec 'TIMESTAMP="$(date +%Y-%m-%d_%H-%M-%S)" && grim -g "$(slurp)" ~/pics/screenshots/screenshot-${TIMESTAMP}.png && cat ~/pics/screenshots/screenshot-${TIMESTAMP}.png | wl-copy'
