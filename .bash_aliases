@@ -1,5 +1,10 @@
 # Color support!
-alias ls='ls --color=auto'
+if [ "$(uname)" == "Darwin" ]
+then
+  alias ls='ls -G'
+else
+  alias ls='ls --color=auto'
+fi
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egre --color=auto'
@@ -24,3 +29,10 @@ alias k='kubectl'
 
 # Make it easier to manage cloud configurations
 alias gcon='gcloud config configurations'
+
+# Mac stuff
+if [ "$(uname)" == "Darwin" ]
+then
+  # Homebrew compatibility for now
+  alias brew='arch -x86_64 brew'
+fi
