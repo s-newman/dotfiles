@@ -76,6 +76,12 @@ export PATH=${PATH}:~/bin
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin
 
+# Add ARM installation of Homebrew to PATH
+if [ "$(uname)" == "Darwin" ]
+then
+  export PATH=${PATH}:/opt/homebrew/bin
+fi
+
 # Required for third display on docking station to work
 # https://github.com/swaywm/sway/issues/5008
 export WLR_DRM_NO_MODIFIERS=1

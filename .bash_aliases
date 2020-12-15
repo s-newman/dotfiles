@@ -29,10 +29,3 @@ alias k='kubectl'
 
 # Make it easier to manage cloud configurations
 alias gcon='gcloud config configurations'
-
-# Mac stuff
-if [ "$(uname)" == "Darwin" ]
-then
-  # Homebrew compatibility for now
-  alias brew='arch -x86_64 brew'
-fi
