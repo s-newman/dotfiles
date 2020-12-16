@@ -1,5 +1,5 @@
 # Color support!
-if [ "$(uname)" == "Darwin" ]
+if [ "$(uname)" = "Darwin" ]
 then
   alias ls='ls -G'
 else

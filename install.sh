@@ -66,6 +66,11 @@ ln -fsn ${CONFIGDIR}/waybar ${HOME}/.config/waybar
 # XDG
 ln -fs ${CONFIGDIR}/user-dirs.dirs ${HOME}/.config/user-dirs.dirs
 
+# Zsh
+ln -fs ${CONFIGDIR}/.zshenv ${HOME}/.zshenv
+ln -fs ${CONFIGDIR}/.zprofile ${HOME}/.zprofile
+ln -fs ${CONFIGDIR}/.zshrc ${HOME}/.zshrc
+
 if [ "$1" = "all" ]
 then
 	# Thinkfan
