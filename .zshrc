@@ -19,8 +19,8 @@ fi
 # NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# kubectl completion
-[ -f /usr/bin/kubectl ] && source <(kubectl completion bash)
+# Google Cloud SDK
+[ -f '/opt/google-cloud-sdk/path.zsh.inc' ] && . '/opt/google-cloud-sdk/path.zsh.inc'
 
 # --- Zsh option customization ------------------------------------------------
 
@@ -52,6 +52,12 @@ setopt CORRECT
 setopt CORRECT_ALL
 
 # --- Completion customization ------------------------------------------------
+
+# kubectl completion
+[ -f /usr/bin/kubectl ] && source <(kubectl completion bash)
+
+# Google Cloud SDK completion
+[ -f '/opt/google-cloud-sdk/completion.zsh.inc' ] && . '/opt/google-cloud-sdk/completion.zsh.inc'
 
 # Enable advanced completion
 autoload -Uz compinit && compinit
