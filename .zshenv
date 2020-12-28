@@ -39,7 +39,4 @@ if [ "$(uname)" = "Darwin" ]
 then
   # ARM installation of homebrew
   export PATH=${PATH}:/opt/homebrew/bin
-
-  # Homebrew-installed sphinx
-  export PATH=${PATH}:/opt/homebrew/opt/sphinx-doc/bin
 fi
