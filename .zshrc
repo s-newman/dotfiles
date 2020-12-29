@@ -8,7 +8,7 @@ else
   printf "Please install starship for an improved prompt.\n\nTo install:\n\t"
   printf "curl -fsSL https://starship.rs/install.sh | bash\n\n"
   printf "You can also install by compiling from source:\n\t"
-  printf "cargo install starship\n\n"
+  printf "cargo install --features notify-rust starship\n\n"
 fi
 
 # --- Shell extension scripts -------------------------------------------------

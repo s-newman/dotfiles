@@ -60,6 +60,10 @@ success_symbol = "[﬌](bold green)"
 error_symbol = "[](bold red)"
 vicmd_symbol = "[](bold green)"
 
+[command_duration]
+show_notifications = true
+min_time_to_notify = 10_000
+
 [directory]
 read_only = ""
 
