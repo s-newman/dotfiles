@@ -48,6 +48,10 @@ setopt HIST_VERIFY
 setopt CORRECT
 setopt CORRECT_ALL
 
+# Reverse I search
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+
 # --- Completion customization ------------------------------------------------
 
 # kubectl completion
