@@ -37,6 +37,7 @@ export PATH=${PATH}:${HOME}/.cargo/bin
 # Homebrew things
 if [ "$(uname)" = "Darwin" ]
 then
-  # ARM installation of homebrew
-  export PATH=${PATH}:/opt/homebrew/bin
+  # ARM installation of homebrew - putting it before the rest of the PATH so
+  # VIM loads properly. This isn't ideal.
+  export PATH=/opt/homebrew/bin:${PATH}
 fi
