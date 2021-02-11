@@ -23,6 +23,12 @@ export XDG_CURRENT_DESKTOP=sway
 # Required for Jetbrains IDEs and other Java AWT programs to display properly
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Configure LLVM path for working with redbpf
+if [ "$(uname)" = "Linux" ]
+then
+  export LLVM_SYS_110_PREFIX=/usr/share
+fi
+
 # --- PATH configuration ------------------------------------------------------
 
 # User bin directory for shell scripts
