@@ -40,6 +40,12 @@ export PATH=${PATH}:${GOPATH}/bin
 # Cargo bin directory for cargo-installed binaries
 export PATH=${PATH}:${HOME}/.cargo/bin
 
+# System-wide golang install
+if [ "$(uname)" = "Linux" ]
+then
+  export PATH=${PATH}:/usr/local/go/bin
+fi
+
 # Homebrew things
 if [ "$(uname)" = "Darwin" ]
 then
