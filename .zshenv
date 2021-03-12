@@ -26,7 +26,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Configure LLVM path for working with redbpf
 if [ "$(uname)" = "Linux" ]
 then
-  export LLVM_SYS_110_PREFIX=/usr/share
+  export LLVM_SYS_110_PREFIX=/usr
 fi
 
 # --- PATH configuration ------------------------------------------------------
