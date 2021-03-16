@@ -68,5 +68,10 @@ zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
+# Linux installation
 [ -f '/opt/google-cloud-sdk/path.zsh.inc' ] && . '/opt/google-cloud-sdk/path.zsh.inc'
 [ -f /opt/google-cloud-sdk/completion.zsh.inc ] && . /opt/google-cloud-sdk/completion.zsh.inc
+
+# Mac installation (via curl https://sdk.cloud.google.com | bash)
+if [ -f '/Users/sean/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sean/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/sean/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sean/google-cloud-sdk/completion.zsh.inc'; fi
