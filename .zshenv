@@ -3,6 +3,7 @@ export EDITOR=vim
 
 # Configure GOPATH
 export GOPATH=${HOME}/go
+export GOROOT=${HOME}/go
 
 # Configure NVM directory
 export NVM_DIR=${HOME}/.config/nvm
