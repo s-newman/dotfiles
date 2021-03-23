@@ -2,7 +2,6 @@
 export EDITOR=vim
 
 # Configure GOPATH
-export GOPATH=${HOME}/go
 export GOROOT=${HOME}/go
 
 # Configure NVM directory
@@ -52,4 +51,8 @@ if [ "$(uname)" = "Darwin" ]
 then
   # ARM installation of homebrew
   export PATH=${PATH}:/opt/homebrew/bin
+
+  # Golang stuff on MAC
+  export GOROOT=/opt/homebrew/opt/go/libexec
+  export PATH=${PATH}:${GOROOT}/bin
 fi
