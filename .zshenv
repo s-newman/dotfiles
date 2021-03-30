@@ -2,7 +2,7 @@
 export EDITOR=vim
 
 # Configure GOPATH
-export GOROOT=${HOME}/go
+export GOPATH=${HOME}/go
 
 # Configure NVM directory
 export NVM_DIR=${HOME}/.config/nvm
@@ -29,6 +29,10 @@ then
   export LLVM_SYS_110_PREFIX=/usr
 fi
 
+# Enable history file
+export HISTORY=${HOME}/.zshhist
+export SAVEHIST=10000
+
 # --- PATH configuration ------------------------------------------------------
 
 # User bin directory for shell scripts
@@ -53,6 +57,6 @@ then
   export PATH=${PATH}:/opt/homebrew/bin
 
   # Golang stuff on MAC
-  export GOROOT=/opt/homebrew/opt/go/libexec
+  export GOROOT=$(brew --prefix golang)/libexec
   export PATH=${PATH}:${GOROOT}/bin
 fi
