@@ -31,6 +31,7 @@ fi
 
 # Enable history file
 export HISTORY=${HOME}/.zshhist
+export HISTFILE=${HOME}/.zshhist
 export SAVEHIST=10000
 
 # --- PATH configuration ------------------------------------------------------
