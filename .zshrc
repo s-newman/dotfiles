@@ -27,12 +27,8 @@ setopt GLOB_COMPLETE
 # Use a single history file for all sessions
 setopt SHARE_HISTORY
 
-# Append to the history file instead of overwriting
-setopt APPEND_HISTORY
-
-# Add commands to history as they are executed instead of waiting for shell
-# exit
-setopt INC_APPEND_HISTORY
+# Make sure shells are aware of each other's history
+setopt SHARE_HISTORY
 
 # Do not store duplicates in history
 setopt HIST_IGNORE_DUPS
