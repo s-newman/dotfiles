@@ -40,9 +40,8 @@ setopt HIST_REDUCE_BLANKS
 # as with `!!`)
 setopt HIST_VERIFY
 
-# Turn on spelling correction
-setopt CORRECT
-setopt CORRECT_ALL
+# Turn off spelling correction
+unsetopt CORRECT_ALL
 
 # Reverse I search
 bindkey -v

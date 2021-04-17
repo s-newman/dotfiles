@@ -1,5 +1,10 @@
 # Set default editor
-export EDITOR=vim
+if [ -f /opt/homebrew/opt/vim/bin/vim ]
+then
+  export EDITOR=/opt/homebrew/opt/vim/bin/vim
+else
+  export EDITOR=vim
+fi
 
 # Configure GOPATH
 export GOPATH=${HOME}/go

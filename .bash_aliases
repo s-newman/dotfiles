@@ -9,6 +9,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egre --color=auto'
 
+# VIM
+[ -f /opt/homebrew/opt/vim/bin/vim ] && alias vim='/opt/homebrew/opt/vim/bin/vim'
+
 # More ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
