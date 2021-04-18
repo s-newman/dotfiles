@@ -70,3 +70,26 @@ zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 # Mac installation (via curl https://sdk.cloud.google.com | bash)
 if [ -f '/Users/sean/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sean/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/sean/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sean/google-cloud-sdk/completion.zsh.inc'; fi
+
+# --- Custom functions --------------------------------------------------------
+
+# Runs an ansible ad-hoc command. If passing one argument, the argument is the
+# shell command to be executed. The command will be run against `all`. If
+# passing two arguments, the first is the group to run the command against, and
+# the second is the shell command.
+ansible-cmd() {
+  if [ "$#" -eq 1 ]
+  then
+    GROUP="all"
+    CMD=$1
+  elif [ "$#" -eq 2 ]
+  then
+    GROUP=$1
+    CMD=$2
+  else
+    echo 'USAGE: ansible-cmd [GROUP] "CMD"'
+    return 1
+  fi
+
+  ansible $GROUP -i inventory.ini -bm ansible.builtin.shell -a $CMD
+}
