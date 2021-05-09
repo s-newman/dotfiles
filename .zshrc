@@ -21,6 +21,10 @@ fi
 
 # --- Zsh option customization ------------------------------------------------
 
+# Activate completion system
+autoload -Uz compinit
+compinit
+
 # Case-insensitive completion
 setopt GLOB_COMPLETE
 
