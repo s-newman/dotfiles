@@ -50,7 +50,8 @@ bindkey '^R' history-incremental-search-backward
 # --- Completion customization ------------------------------------------------
 
 # kubectl completion
-[ -f /usr/bin/kubectl ] && source <(kubectl completion bash)
+[ -f /usr/bin/kubectl ] && source <(kubectl completion zsh)
+[ -f /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
 
 # Enable advanced completion
 autoload -Uz compinit && compinit
