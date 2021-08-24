@@ -27,3 +27,6 @@ alias gcon='gcloud config configurations'
 alias gssh='gcloud compute ssh'
 alias gscp='gcloud compute scp'
 alias glist='gcloud compute instances list'
+
+# Only use yay for AUR
+alias yay='yay --aur'
