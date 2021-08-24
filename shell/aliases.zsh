@@ -10,10 +10,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egre --color=auto'
 
 # VIM
-if [ "$(uname)" = "Darwin" ]
-then
-  alias vim="$(brew --prefix vim)/bin/vim"
-fi
+[ -f /opt/homebrew/opt/vim/bin/vim ] && alias vim=/opt/homebrew/opt/vim/bin/vim
 
 # Docker aliases to keep me sane
 alias docker-stop='sudo docker stop $(sudo docker ps -a -q)'

@@ -1,10 +1,6 @@
 # Set default editor
-if which brew
-then
-  export EDITOR=$(brew --prefix vim)/bin/vim
-else
-  export EDITOR=vim
-fi
+[ -f /opt/homebrew/opt/vim/bin/vim ] && export EDITOR=/opt/homebrew/opt/vim/bin/vim
+[ -z "${EDITOR}" ] && export EDITOR=vim
 
 # Configure GOPATH
 export GOPATH=${HOME}/go
@@ -41,12 +37,5 @@ then
 fi
 
 # Homebrew things
-if [ "$(uname)" = "Darwin" ]
-then
-  # ARM installation of homebrew
-  export PATH=${PATH}:$(brew --prefix vim)/vim
-
-  # Golang stuff on MAC
-  export GOROOT=$(brew --prefix golang)/libexec
-  export PATH=${PATH}:${GOROOT}/bin
-fi
+[ -d /opt/homebrew/bin ] && export PATH=${PATH}:/opt/homebrew/bin
+[ -d /opt/homebrew/opt/go/libexec ] && export GOROOT=/opt/homebrew/opt/go/libexec && export PATH=${PATH}:${GOROOT}/bin
