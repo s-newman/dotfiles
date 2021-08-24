@@ -14,11 +14,6 @@ mkdir -p ${HOME}/.cargo
 # Alacritty
 ln -fsn ${CONFIGDIR}/alacritty ${HOME}/.config/alacritty
 
-# Bash
-ln -fs ${CONFIGDIR}/.bash_aliases ${HOME}/.bash_aliases
-ln -fs ${CONFIGDIR}/.bash_profile ${HOME}/.bash_profile
-ln -fs ${CONFIGDIR}/.bashrc ${HOME}/.bashrc
-
 # Cargo
 ln -fs ${CONFIGDIR}/cargo/config.toml ${HOME}/.cargo/config.toml
 
@@ -70,6 +65,7 @@ ln -fs ${CONFIGDIR}/user-dirs.dirs ${HOME}/.config/user-dirs.dirs
 ln -fs ${CONFIGDIR}/.zshenv ${HOME}/.zshenv
 ln -fs ${CONFIGDIR}/.zprofile ${HOME}/.zprofile
 ln -fs ${CONFIGDIR}/.zshrc ${HOME}/.zshrc
+ln -fsn ${CONFIGDIR}/shell ${HOME}/.config/shell
 
 if [ "$1" = "all" ]
 then
