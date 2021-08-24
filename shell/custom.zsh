@@ -88,8 +88,8 @@ _try_source /opt/google-cloud-sdk/path.zsh.inc
 _try_source /opt/google-cloud-sdk/completion.zsh.inc
 
 # Mac installation (via curl https://sdk.cloud.google.com | bash)
-_try_source /Users/sean/google-cloud-sdk/path.zsh.inc
-_try_source /Users/sean/google-cloud-sdk/completion.zsh.inc
+_try_source "${HOME}/google-cloud-sdk/path.zsh.inc"
+_try_source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 
 # --- Et cetera ---------------------------------------------------------------
 

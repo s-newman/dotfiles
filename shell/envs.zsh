@@ -1,6 +1,7 @@
 # Set default editor
-[ -f /opt/homebrew/opt/vim/bin/vim ] && export EDITOR=/opt/homebrew/opt/vim/bin/vim
-[ -z "${EDITOR}" ] && export EDITOR=vim
+[ -f /opt/homebrew/opt/vim/bin/vim ] && export EDITOR=/opt/homebrew/opt/vim/bin/vim # MacOS (ARM)
+[ -f /usr/local/opt/vim/bin/vim ] && export EDITOR=/usr/local/opt/vim/bin/vim # MacOS (Intel)
+[ -z "${EDITOR}" ] && export EDITOR=vim # Linux
 
 # Configure GOPATH
 export GOPATH=${HOME}/go
@@ -36,6 +37,6 @@ then
   export PATH=${PATH}:/usr/local/go/bin
 fi
 
-# Homebrew things
+# Homebrew things for MacOS ARM
 [ -d /opt/homebrew/bin ] && export PATH=${PATH}:/opt/homebrew/bin
 [ -d /opt/homebrew/opt/go/libexec ] && export GOROOT=/opt/homebrew/opt/go/libexec && export PATH=${PATH}:${GOROOT}/bin

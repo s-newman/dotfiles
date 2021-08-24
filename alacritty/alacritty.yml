@@ -37,3 +37,6 @@ font:
     family: CaskaydiaCove Nerd Font
 
   size: 13
+
+window:
+  decorations: "none"
