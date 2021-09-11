@@ -32,6 +32,7 @@
     // Disable telemetry
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "redhat.telemetry.enabled": false,
     //
     // ------------------------------------------------------------------------
     // Editor customizations
@@ -78,6 +79,10 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
+    // Don't try to auto-detect indentation, it goes bad sometimes
+    "editor.detectIndentation": false,
+    // Themes
+    "workbench.colorTheme": "Ayu Mirage Bordered",
     "workbench.iconTheme": "material-icon-theme",
     //
     // ------------------------------------------------------------------------
@@ -95,6 +100,9 @@
     "C_Cpp.updateChannel": "Insiders",
     // --- Golang -------------------------------------------------------------
     "go.formatTool": "goimports",
+    "go.lintTool": "golangci-lint",
+    "go.toolsManagement.autoUpdate": true,
+    "go.useLanguageServer": true,
     "[go]": {
         "editor.tabSize": 4
     },
@@ -237,9 +245,7 @@
     "remote.containers.dotfiles.repository": "s-newman/dotfiles",
     // Automatically wrap comments as they get typed out
     "rewrap.autoWrap.enabled": true,
-    // I don't know what this is, but VSCode automatically added it
-    "todo-tree.tree.showScanModeButton": false,
-    "go.useLanguageServer": true,
+    // Configure Todo tree highlights
     "todo-tree.general.tags": [
         "BUG",
         "HACK",
@@ -250,13 +256,5 @@
         "[ ]",
         "[x]"
     ],
-    "task.problemMatchers.neverPrompt": {
-        "shell": true
-    },
-    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-    "go.toolsManagement.autoUpdate": true,
-    "editor.detectIndentation": false,
-    "go.lintTool": "golangci-lint",
-    "workbench.colorTheme": "Ayu Light",
-    "redhat.telemetry.enabled": false
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
 }
