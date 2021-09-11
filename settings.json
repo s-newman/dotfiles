@@ -1,0 +1,262 @@
+{
+    //
+    // ------------------------------------------------------------------------
+    // General settings
+    // ------------------------------------------------------------------------
+    // Breadcrumbs are pretty nice even if I don't use them much
+    "breadcrumbs.enabled": true,
+    // I'll put breakpoints where I want even if it doesn't make sense
+    "debug.allowBreakpointsEverywhere": true,
+    // Display trailing whitespace so it can be removed
+    "editor.renderWhitespace": "trailing",
+    // Automatically fix unusual line terminators
+    "editor.unusualLineTerminators": "auto",
+    // Don't really remember this one but we'll keep it
+    "explorer.confirmDragAndDrop": false,
+    // Vagrantfiles are ruby scripts because of course they are
+    "files.associations": {
+        "Vagrantfile": "ruby"
+    },
+    // Ignore files to reduce errors about tracking files
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.hg/store/**": true,
+        "**/target/**": true
+    },
+    // Peroidically run a git fetch
+    "git.autofetch": true,
+    // Let me compose my own commits in peace thank you
+    "git.suggestSmartCommit": false,
+    // Disable telemetry
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    //
+    // ------------------------------------------------------------------------
+    // Editor customizations
+    // ------------------------------------------------------------------------
+    // Configure rulers so I know when I'm writing a line too long
+    "editor.rulers": [
+        79,
+        99,
+        119
+    ],
+    // Set the font size just right
+    "editor.fontSize": 13,
+    // Minimap just takes up screen real estate
+    "editor.minimap.enabled": false,
+    // Autoformat code when possible
+    "editor.formatOnSave": true,
+    // Customize font
+    "editor.fontFamily": "'CaskaydiaCove Nerd Font', 'Cascadia Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    // Font ligatures combine adjacent characters into a single cool character
+    "editor.fontLigatures": true,
+    "editor.suggestSelection": "first",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                // Turn off italic comments
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": ""
+                }
+            },
+            {
+                // Fix python docstring colors
+                "scope": [
+                    "string.quoted.docstring.multi.python",
+                    "string.quoted.docstring.multi.python punctuation.definition.string.begin.python",
+                    "string.quoted.docstring.multi.python punctuation.definition.string.end.python"
+                ],
+                "settings": {
+                    "foreground": "#5C6370"
+                }
+            }
+        ]
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    //
+    // ------------------------------------------------------------------------
+    // Language-specific settings
+    // ------------------------------------------------------------------------
+    // --- Docker Compose -----------------------------------------------------
+    "[dockercompose]": {
+        "editor.tabSize": 2
+    },
+    // --- CSS ----------------------------------------------------------------
+    "[css]": {
+        "editor.tabSize": 2
+    },
+    // --- C/C++ --------------------------------------------------------------
+    "C_Cpp.updateChannel": "Insiders",
+    // --- Golang -------------------------------------------------------------
+    "go.formatTool": "goimports",
+    "[go]": {
+        "editor.tabSize": 4
+    },
+    // --- Hashicorp Configuration Language -----------------------------------
+    "[hcl]": {
+        "editor.tabSize": 2
+    },
+    // --- Helm Templates -----------------------------------------------------
+    "[helm]": {
+        "editor.tabSize": 2
+    },
+    // --- HTML ---------------------------------------------------------------
+    "[html]": {
+        "editor.tabSize": 2,
+        "rewrap.autoWrap.enabled": false
+    },
+    // --- HTTP ---------------------------------------------------------------
+    "[http]": {
+        "files.eol": "\r\n"
+    },
+    // --- JavaScript ---------------------------------------------------------
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 2
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    // --- JSON ---------------------------------------------------------------
+    "[json]": {
+        "editor.tabSize": 2,
+        "editor.wordWrap": "on",
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    // -- LaTeX ---------------------------------------------------------------
+    "[latex]": {
+        // The autoformatting for tables is pretty garbage when you have long lines
+        "editor.formatOnSave": false,
+        "editor.wordWrap": "on",
+        "rewrap.autoWrap.enabled": false
+    },
+    // --- Markdown -----------------------------------------------------------
+    "[markdown]": {
+        "editor.tabSize": 2,
+        "rewrap.autoWrap.enabled": false
+    },
+    // --- Python -------------------------------------------------------------
+    // Autoformat with Black
+    "python.formatting.provider": "black",
+    // Enable flake8 and mypy linting, but don't lint with pylint
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.pylintEnabled": false,
+    "[python]": {
+        // Customize the rulers to look right with Black
+        "editor.rulers": [
+            88
+        ],
+        "editor.tabSize": 4
+    },
+    // --- ReStructuredText ---------------------------------------------------
+    "[restructuredtext]": {
+        "editor.tabSize": 3,
+        "editor.wordWrap": "on"
+    },
+    // --- Ruby ---------------------------------------------------------------
+    "[ruby]": {
+        "editor.tabSize": 2
+    },
+    // --- Rust ---------------------------------------------------------------
+    "rust-analyzer.cargo.runBuildScripts": true,
+    // Run clippy linting on save instead of using `cargo check`
+    "rust-analyzer.checkOnSave.command": "clippy",
+    // Enable proc macro support
+    "rust-analyzer.procMacro.enable": true,
+    "[rust]": {
+        // Use the formatter shipped with rust-analyzer
+        "editor.defaultFormatter": "matklad.rust-analyzer",
+        // Customize the rulers to indicate the default max_width of rustfmt
+        "editor.rulers": [
+            100
+        ]
+    },
+    // --- SCSS ---------------------------------------------------------------
+    "[scss]": {
+        "editor.tabSize": 2
+    },
+    // --- Shell scripts ------------------------------------------------------
+    "[shellscript]": {
+        "editor.tabSize": 2
+    },
+    // --- Terraform ----------------------------------------------------------
+    "[tf]": {
+        "editor.tabSize": 2
+    },
+    // --- TypeScript ---------------------------------------------------------
+    "[typescript]": {
+        "editor.tabSize": 2
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 2
+    },
+    // --- YAML ---------------------------------------------------------------
+    "[yaml]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2,
+        "rewrap.autoWrap.enabled": false
+    },
+    // --- Bind9 DNS Zone -----------------------------------------------------
+    "[zone]": {
+        "editor.tabSize": 8,
+        "editor.insertSpaces": false
+    },
+    //
+    // ------------------------------------------------------------------------
+    // Extension settings
+    // ------------------------------------------------------------------------
+    // Generate Python docstrings compatible with sphinx.ext.autodoc
+    "autoDocstring.docstringFormat": "sphinx",
+    // Show test coverage on the lines, not the gutters
+    "coverage-gutters.showGutterCoverage": false,
+    "coverage-gutters.showLineCoverage": true,
+    // Don't show a confirmation window to sync changes
+    "git.confirmSync": false,
+    // Default GitLens settings
+    "gitlens.codeLens.enabled": false,
+    "gitlens.defaultDateFormat": "YYYY MMMM Do - h:mma",
+    "gitlens.defaultDateShortFormat": "YYYY MMM D",
+    // Git repos are stored under ~/src; need to specify absolute path though
+    "projectManager.git.baseFolders": [
+        "$home/src"
+    ],
+    "projectManager.git.maxDepthRecursion": 1,
+    // Manually set platforms for some remote ssh targets
+    "remote.containers.dotfiles.repository": "s-newman/dotfiles",
+    // Automatically wrap comments as they get typed out
+    "rewrap.autoWrap.enabled": true,
+    // I don't know what this is, but VSCode automatically added it
+    "todo-tree.tree.showScanModeButton": false,
+    "go.useLanguageServer": true,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "todo!()",
+        "[ ]",
+        "[x]"
+    ],
+    "task.problemMatchers.neverPrompt": {
+        "shell": true
+    },
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "go.toolsManagement.autoUpdate": true,
+    "editor.detectIndentation": false,
+    "go.lintTool": "golangci-lint",
+    "workbench.colorTheme": "Ayu Light",
+    "redhat.telemetry.enabled": false
+}

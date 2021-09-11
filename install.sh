@@ -35,6 +35,15 @@ ln -fs ${CONFIGDIR}/.tmux.conf ${HOME}/.tmux.conf
 # Vim
 ln -fsn ${CONFIGDIR}/.vim ${HOME}/.vim
 
+# VS Code
+if [ "$(uname)" = "Darwin" ]; then
+  mkdir -p "${HOME}/Library/Application Support/Code/User"
+  ln -fs "${CONFIGDIR}/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json"
+else
+  mkdir -p "${HOME}/.config/Code/User"
+  ln -fs "${CONFIGDIR}/settings.json" "${HOME}/.config/Code/User/settings.json"
+fi
+
 # Zsh
 ln -fs ${CONFIGDIR}/.zshenv ${HOME}/.zshenv
 ln -fs ${CONFIGDIR}/.zprofile ${HOME}/.zprofile
