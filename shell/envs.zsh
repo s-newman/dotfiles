@@ -19,6 +19,7 @@ fi
 export HISTORY=${HOME}/.zhistory
 export HISTFILE=${HOME}/.zhistory
 export SAVEHIST=10000
+export HISTSIZE=10000
 
 # --- PATH configuration ------------------------------------------------------
 

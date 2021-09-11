@@ -32,6 +32,7 @@ setopt SHARE_HISTORY
 
 # Do not store duplicates in history
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 
 # Remove blank likes from history
 setopt HIST_REDUCE_BLANKS
@@ -44,7 +45,7 @@ unsetopt CORRECT_ALL
 
 # Reverse I search
 bindkey -v
-bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^R' history-incremental-search-backward
 
 # Case-insensitive globs
 setopt NO_CASE_GLOB
