@@ -33,6 +33,9 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "redhat.telemetry.enabled": false,
+    "workbench.enableExperiments": false,
+    // Better title bars everywhere
+    "window.titleBarStyle": "custom",
     //
     // ------------------------------------------------------------------------
     // Editor customizations
