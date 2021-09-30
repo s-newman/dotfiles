@@ -17,6 +17,11 @@ ln -fsn ${CONFIGDIR}/alacritty ${HOME}/.config/alacritty
 # Cargo
 ln -fs ${CONFIGDIR}/cargo/config.toml ${HOME}/.cargo/config.toml
 
+# Electron
+if [ "$(uname)" = "Linux" ]; then
+  ln -fs ${CONFIGDIR}/electron-flags.conf ${HOME}/.config/electron-flags.conf
+fi
+
 # Flake8
 ln -fs ${CONFIGDIR}/.flake8 ${HOME}/.config/flake8
 
@@ -28,6 +33,11 @@ ln -fsn ${CONFIGDIR}/pacman ${HOME}/.config/pacman
 
 # Radare2
 ln -fsn ${CONFIGDIR}/.radare2rc ${HOME}/.radare2rc
+
+# Systemd User Env Vars
+if [ "$(uname)" = "Linux" ]; then
+  ln -fsn ${CONFIGDIR}/environment.d ${HOME}/.config/environment.d
+fi
 
 # Tmux
 ln -fs ${CONFIGDIR}/.tmux.conf ${HOME}/.tmux.conf
