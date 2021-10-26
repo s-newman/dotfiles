@@ -55,7 +55,6 @@ else
 fi
 
 # Zsh
-ln -fs ${CONFIGDIR}/.zshenv ${HOME}/.zshenv
 ln -fs ${CONFIGDIR}/.zprofile ${HOME}/.zprofile
 ln -fs ${CONFIGDIR}/.zshrc ${HOME}/.zshrc
 ln -fsn ${CONFIGDIR}/shell ${HOME}/.config/shell
