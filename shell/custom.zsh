@@ -89,7 +89,7 @@ export WORKON_HOME="${HOME}/envs"
 mkdir -p "${WORKON_HOME}"
 _try_source /opt/homebrew/bin/virtualenvwrapper.sh # MacOS (ARM)
 _try_source /usr/local/bin/virtualenvwrapper.sh # MacOS (Intel)
-_try_source /usr/bin/Virtualenvwrapper.sh # Linux
+_try_source /usr/bin/virtualenvwrapper.sh # Linux
 
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
