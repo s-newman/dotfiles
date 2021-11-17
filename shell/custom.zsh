@@ -44,7 +44,6 @@ setopt HIST_VERIFY
 unsetopt CORRECT_ALL
 
 # Reverse I search
-bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 # Case-insensitive globs
@@ -55,6 +54,9 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 # Partial path completion
 zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
+
+# Use Emacs mode over Vim mode to reduce issues with editing config lines
+bindkey -e
 
 # --- Prompt customization ----------------------------------------------------
 
