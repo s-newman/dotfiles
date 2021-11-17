@@ -7,12 +7,17 @@
     "breadcrumbs.enabled": true,
     // I'll put breakpoints where I want even if it doesn't make sense
     "debug.allowBreakpointsEverywhere": true,
+    // Help me out with brackets please
+    "editor.guides.bracketPairs": "active",
     // Display trailing whitespace so it can be removed
     "editor.renderWhitespace": "trailing",
     // Automatically fix unusual line terminators
     "editor.unusualLineTerminators": "auto",
     // Don't really remember this one but we'll keep it
     "explorer.confirmDragAndDrop": false,
+    // Please god jesus stop bugging me about extension recommendations I don't
+    // care
+    "extensions.ignoreRecommendations": true,
     // Vagrantfiles are ruby scripts because of course they are
     "files.associations": {
         "Vagrantfile": "ruby"
@@ -30,8 +35,7 @@
     // Let me compose my own commits in peace thank you
     "git.suggestSmartCommit": false,
     // Disable telemetry
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "redhat.telemetry.enabled": false,
     "workbench.enableExperiments": false,
     // Better title bars everywhere
@@ -163,8 +167,8 @@
     // Enable flake8 and mypy linting, but don't lint with pylint
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
-	"--max-line-length",
-	"88"
+	    "--max-line-length",
+	    "88"
     ],
     "python.linting.mypyEnabled": true,
     "python.linting.pylintEnabled": false,
