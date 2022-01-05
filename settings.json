@@ -167,15 +167,18 @@
     // Enable flake8 and mypy linting, but don't lint with pylint
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
-	    "--max-line-length",
-	    "88"
+        "--max-line-length",
+        "88"
     ],
     "python.linting.mypyEnabled": true,
     "python.linting.pylintEnabled": false,
     "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
         // Customize the rulers to look right with Black
         "editor.rulers": [
-            88
+            88,
         ],
         "editor.tabSize": 4
     },
