@@ -68,7 +68,7 @@ _try_source "${HOME}/.p10k.zsh"
 # --- Shell extension scripts -------------------------------------------------
 
 # NVM
-_try_source "${NVM_DIR}/nvm.sh"
+_try_source /usr/share/nvm/init-nvm.sh
 
 # kubectl completion
 [ -f /usr/bin/kubectl ] && source <(kubectl completion zsh)
