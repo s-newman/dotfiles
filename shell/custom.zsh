@@ -19,6 +19,9 @@ _try_source "${HOME}/.config/shell/aliases.zsh"
 # Environment vars
 _try_source "${HOME}/.config/shell/envs.zsh"
 
+# System-specific customizations
+_try_source "${HOME}/.config/shell/system.zsh"
+
 # --- Zsh option customization ------------------------------------------------
 
 # Activate completion system

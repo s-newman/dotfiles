@@ -21,6 +21,9 @@ export HISTFILE=${HOME}/.zhistory
 export SAVEHIST=10000
 export HISTSIZE=10000
 
+# Always use BuildKit builds
+export DOCKER_BUILDKIT=1
+
 # --- PATH configuration ------------------------------------------------------
 
 # User bin directory for shell scripts
@@ -41,3 +44,8 @@ fi
 # Homebrew things for MacOS ARM
 [ -d /opt/homebrew/bin ] && export PATH=${PATH}:/opt/homebrew/bin
 [ -d /opt/homebrew/opt/go/libexec ] && export GOROOT=/opt/homebrew/opt/go/libexec && export PATH=${PATH}:${GOROOT}/bin
+
+# Poetry installation on MacOS without Homebrew
+if [ "$(uname)" = "Darwin" ] && [ -d "${HOME}/Library/Python/3.9/bin" ]; then
+  export PATH="${PATH}:${HOME}/Library/Python/3.9/bin"
+fi

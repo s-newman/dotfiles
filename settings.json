@@ -133,6 +133,10 @@
   "[javascript]": {
     "editor.tabSize": 2
   },
+  // --- Jinja2 -------------------------------------------------------------
+  "[jinja]": {
+    "rewrap.autoWrap.enabled": false
+  },
   // --- JSX ----------------------------------------------------------------
   "[javascriptreact]": {
     "editor.tabSize": 2
@@ -157,6 +161,7 @@
   },
   // --- Markdown -----------------------------------------------------------
   "[markdown]": {
+    "editor.formatOnSave": false,
     "editor.tabSize": 2,
     "rewrap.autoWrap.enabled": false
   },
@@ -244,8 +249,11 @@
   // ------------------------------------------------------------------------
   // Extension settings
   // ------------------------------------------------------------------------
-  // Generate Python docstrings compatible with sphinx.ext.autodoc
-  "autoDocstring.docstringFormat": "sphinx",
+  // Generate Python docstrings using numpy format without putting types in the
+  // docstring itself. Sphinx will read typehints for you so you don't need to
+  // put them in the docstring as well. Also, numpy's docstring format is
+  // rendered better by vscode in previews by default.
+  "autoDocstring.docstringFormat": "numpy-notypes",
   // Show test coverage on the lines, not the gutters
   "coverage-gutters.showGutterCoverage": false,
   "coverage-gutters.showLineCoverage": true,
@@ -269,6 +277,8 @@
   "projectManager.git.maxDepthRecursion": 1,
   // Manually set platforms for some remote ssh targets
   "remote.containers.dotfiles.repository": "s-newman/dotfiles",
+  // Same folder sort order as the projectManager extension
+  "remote.SSH.foldersSortOrder": "alphabetical",
   // https://github.com/microsoft/vscode-remote-release/issues/6333#issuecomment-1039210946
   "remote.SSH.localServerDownload": "always",
   // Automatically wrap comments as they get typed out
@@ -282,7 +292,8 @@
     "XXX",
     "todo!()",
     "[ ]",
-    "[x]"
+    "[x]",
+    "raise NotImplementedError()"
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
 }

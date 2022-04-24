@@ -2,3 +2,6 @@
 .vim/plugged/
 .vim/black/
 .vim/bundle/
+
+# Per-system shell customizations
+!/shell/system.zsh

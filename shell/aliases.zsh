@@ -30,3 +30,8 @@ alias glist='gcloud compute instances list'
 
 # Only use yay for AUR
 alias yay='yay --aur'
+
+# virtualenvwrapper
+alias lsvenv='lsvirtualenv'
+alias mkvenv='lsvirtualenv'
+alias rmvenv='rmvirtualenv'
