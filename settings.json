@@ -104,8 +104,6 @@
   "[css]": {
     "editor.tabSize": 2
   },
-  // --- C/C++ --------------------------------------------------------------
-  "C_Cpp.updateChannel": "Insiders",
   // --- Golang -------------------------------------------------------------
   "go.formatTool": "goimports",
   "go.lintTool": "golangci-lint",
