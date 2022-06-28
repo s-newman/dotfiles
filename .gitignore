@@ -4,4 +4,4 @@
 .vim/bundle/
 
 # Per-system shell customizations
-!/shell/system.zsh
+/shell/system.zsh
