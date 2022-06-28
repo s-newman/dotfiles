@@ -81,6 +81,24 @@
         "settings": {
           "foreground": "#5C6370"
         }
+      },
+      {
+        "scope": "variable.key.table",
+        "settings": {
+          "foreground": "#39bae6",
+        },
+      },
+      {
+        "scope": "variable.key.array",
+        "settings": {
+          "foreground": "#39bae6",
+        }
+      },
+      {
+        "scope": "constant.other.time",
+        "settings": {
+          "foreground": "#d2a6ff",
+        }
       }
     ]
   },
