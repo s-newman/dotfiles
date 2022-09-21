@@ -28,6 +28,12 @@ ln -fs ${CONFIGDIR}/.flake8 ${HOME}/.config/flake8
 # GNU Readline
 ln -fs ${CONFIGDIR}/.inputrc ${HOME}/.inputrc
 
+# GTK 3.0/4.0
+mkdir -p "${HOME}/.config/gtk-3.0"
+ln -sf "${CONFIGDIR}/gtk-settings.ini" "${HOME}/.config/gtk-3.0/settings.ini"
+mkdir -p "${HOME}/.config/gtk-4.0"
+ln -sf "${CONFIGDIR}/gtk-settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"
+
 # Pacman
 ln -fsn ${CONFIGDIR}/pacman ${HOME}/.config/pacman
 

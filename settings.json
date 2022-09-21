@@ -207,7 +207,7 @@
     "editor.rulers": [
       88
     ],
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
     "jupyter.askForKernelRestart": false
   },
   // --- ReStructuredText ---------------------------------------------------
@@ -227,8 +227,13 @@
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.experimental.procAttrMacros": false,
   "[rust]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
+    },
+    "editor.formatOnSave": true,
     // Use the formatter shipped with rust-analyzer
-    "editor.defaultFormatter": "matklad.rust-analyzer",
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
     // Customize the rulers to indicate the default max_width of rustfmt
     "editor.rulers": [
       100
@@ -259,6 +264,11 @@
     "editor.formatOnSave": false,
     "editor.tabSize": 2,
     "rewrap.autoWrap.enabled": false
+  },
+  // --- XML ----------------------------------------------------------------
+  "[xml]": {
+    "rewrap.autoWrap.enabled": false,
+    "xmlTools.enforcePrettySelfClosingTagOnFormat": true
   },
   // --- Bind9 DNS Zone -----------------------------------------------------
   "[zone]": {
