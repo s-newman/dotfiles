@@ -1,76 +1,87 @@
 #!/usr/bin/env bash
 # Deploys the configuration files by creating soft links
+set -eoux pipefail
 
 # Figure out where our configs are located
 # NOTE: this requires that this (install.sh) script is NOT a link!
 CONFIGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
-# Ensure ~/.config exists
-mkdir -p ${HOME}/.config
+# Link a config file into the specified homedir path.
+# $1 - source path (relative to $CONFIGDIR)
+# $2 - dest path (relative to $HOME)
+function _link_file {
+  local src="${1}"
+  local dest="${2}"
+  ln -fs "${CONFIGDIR}/${src}" "${HOME}/${dest}"
+}
 
-# Ensure ~/.cargo exists
-mkdir -p ${HOME}/.cargo
+# Link a config directory into the specified homedir path.
+# $1 - source path (relative to $CONFIGDIR)
+# $2 - dest path (relative to $HOME)
+function _link_dir {
+  local src="${1}"
+  local dest="${2}"
+  ln -fsn "${CONFIGDIR}/${src}" "${HOME}/${dest}"
+}
+
+# Ensure directories exist
+mkdir -p "${HOME}/.config" # Store as many configs here as we can to keep the homedir clean
+mkdir -p "${HOME}/.cargo" # Cargo wants a special folder for its config :(
 
 # Alacritty
-ln -fsn ${CONFIGDIR}/alacritty ${HOME}/.config/alacritty
+_link_dir alacritty .config/alacritty
 
 # Cargo
-ln -fs ${CONFIGDIR}/cargo/config.toml ${HOME}/.cargo/config.toml
+_link_file cargo/config.toml .cargo/config.toml
 
 # Electron
 if [ "$(uname)" = "Linux" ]; then
-  ln -fs ${CONFIGDIR}/electron-flags.conf ${HOME}/.config/electron-flags.conf
+  _link_file electron-flags.conf .config/electron-flags.conf
 fi
 
 # Flake8
-ln -fs ${CONFIGDIR}/.flake8 ${HOME}/.config/flake8
+_link_file .flake8 .config/flake8
 
 # GNU Readline
-ln -fs ${CONFIGDIR}/.inputrc ${HOME}/.inputrc
+_link_file .inputrc .inputrc
 
 # GTK 3.0/4.0
 mkdir -p "${HOME}/.config/gtk-3.0"
-ln -sf "${CONFIGDIR}/gtk-settings.ini" "${HOME}/.config/gtk-3.0/settings.ini"
+_link_file gtk-settings.ini .config/gtk-3.0/settings.ini
 mkdir -p "${HOME}/.config/gtk-4.0"
-ln -sf "${CONFIGDIR}/gtk-settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"
+_link_file gtk-settings.ini .config/gtk-4.0/settings.ini
 
 # Kitty
-ln -fsn "${CONFIGDIR}/kitty" "${HOME}/.config/kitty"
+_link_dir kitty .config/kitty
 
 # Pacman
-ln -fsn ${CONFIGDIR}/pacman ${HOME}/.config/pacman
+_link_dir pacman .config/pacman
 
 # Radare2
-ln -fsn ${CONFIGDIR}/.radare2rc ${HOME}/.radare2rc
+_link_file .radare2rc .radare2rc
 
 # Systemd User Env Vars
 if [ "$(uname)" = "Linux" ]; then
-  ln -fsn ${CONFIGDIR}/environment.d ${HOME}/.config/environment.d
+  _link_dir environment.d .config/environment.d
 fi
 
 # Tmux
-ln -fs ${CONFIGDIR}/.tmux.conf ${HOME}/.tmux.conf
+_link_file .tmux.conf .tmux.conf
 
 # Vim
-ln -fsn ${CONFIGDIR}/.vim ${HOME}/.vim
+_link_dir .vim .vim
 
 # VS Code
 if [ "$(uname)" = "Darwin" ]; then
   mkdir -p "${HOME}/Library/Application Support/Code/User"
-  ln -fs "${CONFIGDIR}/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json"
+  _link_file settings.json "Library/Application Support/Code/User/settings.json"
 else
   mkdir -p "${HOME}/.config/Code/User"
-  ln -fs "${CONFIGDIR}/settings.json" "${HOME}/.config/Code/User/settings.json"
+  link_file settings.json .config/Code/User/settings.json
 fi
 
 # Zsh
-ln -fs ${CONFIGDIR}/.zprofile ${HOME}/.zprofile
-ln -fs ${CONFIGDIR}/.zshrc ${HOME}/.zshrc
-ln -fsn ${CONFIGDIR}/shell ${HOME}/.config/shell
-ln -fs ${CONFIGDIR}/.p10k.zsh ${HOME}/.p10k.zsh
-
-if [ "$1" = "all" ]
-then
-	# Thinkfan
-	sudo ln -fs ${CONFIGDIR}/thinkfan.conf /etc/thinkfan.conf
-fi
+_link_file .zprofile .zprofile
+_link_file .zshrc .zshrc
+_link_dir shell .config/shell
+_link_file .p10k.zsh .p10k.zsh
