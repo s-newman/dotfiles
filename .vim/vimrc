@@ -28,3 +28,7 @@ syntax on
 set termguicolors
 let ayucolor="dark"
 colorscheme ayu
+
+" get backspace working properly on MacOS
+" https://stackoverflow.com/a/11560415
+set backspace=indent,eol,start
