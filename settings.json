@@ -226,6 +226,9 @@
   // Enable proc macro support
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.experimental.procAttrMacros": false,
+  // Only group imports at the module level
+  "rust-analyzer.imports.granularity.enforce": true,
+  "rust-analyzer.imports.granularity.group": "module",
   "[rust]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": true,
@@ -237,7 +240,8 @@
     // Customize the rulers to indicate the default max_width of rustfmt
     "editor.rulers": [
       100
-    ]
+    ],
+    "rewrap.wrappingColumn": 80
   },
   // --- SCSS ---------------------------------------------------------------
   "[scss]": {
