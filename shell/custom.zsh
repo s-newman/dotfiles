@@ -94,6 +94,9 @@ _try_source /opt/homebrew/bin/virtualenvwrapper.sh # MacOS (ARM)
 _try_source /usr/local/bin/virtualenvwrapper.sh # MacOS (Intel)
 _try_source /usr/bin/virtualenvwrapper.sh # Linux
 
+# Broot
+[ -x /usr/bin/broot ] && source <(broot --print-shell-function zsh)
+
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
 # Linux installation
