@@ -34,6 +34,9 @@ ln -sf "${CONFIGDIR}/gtk-settings.ini" "${HOME}/.config/gtk-3.0/settings.ini"
 mkdir -p "${HOME}/.config/gtk-4.0"
 ln -sf "${CONFIGDIR}/gtk-settings.ini" "${HOME}/.config/gtk-4.0/settings.ini"
 
+# Kitty
+ln -fsn "${CONFIGDIR}/kitty" "${HOME}/.config/kitty"
+
 # Pacman
 ln -fsn ${CONFIGDIR}/pacman ${HOME}/.config/pacman
 
