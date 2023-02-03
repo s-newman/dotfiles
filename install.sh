@@ -77,7 +77,7 @@ if [ "$(uname)" = "Darwin" ]; then
   _link_file settings.json "Library/Application Support/Code/User/settings.json"
 else
   mkdir -p "${HOME}/.config/Code/User"
-  link_file settings.json .config/Code/User/settings.json
+  _link_file settings.json .config/Code/User/settings.json
 fi
 
 # Zsh
