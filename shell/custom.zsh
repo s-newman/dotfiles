@@ -97,6 +97,9 @@ _try_source /usr/bin/virtualenvwrapper.sh # Linux
 # Broot
 [ -x /usr/bin/broot ] && source <(broot --print-shell-function zsh)
 
+# fluxcd completion
+[ -x /opt/homebrew/bin/flux ] && source <(flux completion zsh)
+
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
 # Linux installation
