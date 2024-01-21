@@ -28,6 +28,9 @@ function _link_dir {
 mkdir -p "${HOME}/.config" # Store as many configs here as we can to keep the homedir clean
 mkdir -p "${HOME}/.cargo" # Cargo wants a special folder for its config :(
 
+# Package lists for package managers that don't have an equivalent to Brewfile
+_link_dir packages .config/packages
+
 # Alacritty
 _link_dir alacritty .config/alacritty
 
