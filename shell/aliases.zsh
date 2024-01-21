@@ -29,3 +29,17 @@ alias rmvenv='rmvirtualenv'
 
 # Homebrew (real) OpenSSL
 alias brew-openssl='/usr/local/opt/openssl/bin/openssl'
+
+# Quick SSH connections
+alias dangeroussh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias dangerouscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
+# Going up directories faster
+# https://askubuntu.com/a/703701
+function up() {
+  num=$1
+  while [ ${num} -ne 0 ]; then
+    cd ..
+    num=$((num-1))
+  fi
+}
