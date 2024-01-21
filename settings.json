@@ -104,7 +104,7 @@
     ]
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   // Don't try to auto-detect indentation, it goes bad sometimes
   "editor.detectIndentation": false,
@@ -123,14 +123,6 @@
   "[css]": {
     "editor.tabSize": 2
   },
-  // --- Golang -------------------------------------------------------------
-  "go.formatTool": "goimports",
-  "go.lintTool": "golangci-lint",
-  "go.toolsManagement.autoUpdate": true,
-  "go.useLanguageServer": true,
-  "[go]": {
-    "editor.tabSize": 4
-  },
   // --- Hashicorp Configuration Language -----------------------------------
   "[hcl]": {
     "editor.tabSize": 2
@@ -142,7 +134,8 @@
   // --- HTML ---------------------------------------------------------------
   "[html]": {
     "editor.tabSize": 2,
-    "rewrap.autoWrap.enabled": false
+    "rewrap.autoWrap.enabled": false,
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
   // --- HTTP ---------------------------------------------------------------
   "[http]": {
@@ -189,26 +182,20 @@
     "editor.tabSize": 2
   },
   // --- Python -------------------------------------------------------------
-  // Autoformat with Black
-  "python.formatting.provider": "black",
-  // Enable flake8 and mypy linting, but don't lint with pylint
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": [
+  "flake8.args": [
     "--max-line-length",
     "88"
   ],
-  "python.linting.mypyEnabled": true,
-  "python.linting.pylintEnabled": false,
   "[python]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.organizeImports": "explicit"
     },
     // Customize the rulers to look right with Black
     "editor.rulers": [
       88
     ],
     "editor.tabSize": 4,
-    "jupyter.askForKernelRestart": false
+    "editor.defaultFormatter": "ms-python.python"
   },
   // --- ReStructuredText ---------------------------------------------------
   "[restructuredtext]": {
@@ -220,19 +207,15 @@
     "editor.tabSize": 2
   },
   // --- Rust ---------------------------------------------------------------
-  "rust-analyzer.cargo.runBuildScripts": true,
-  // Run clippy linting on save instead of using `cargo check`
-  "rust-analyzer.checkOnSave.command": "clippy",
   // Enable proc macro support
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.experimental.procAttrMacros": false,
   // Only group imports at the module level
   "rust-analyzer.imports.granularity.enforce": true,
   "rust-analyzer.imports.granularity.group": "module",
   "[rust]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.organizeImports": true
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
     },
     "editor.formatOnSave": true,
     // Use the formatter shipped with rust-analyzer
@@ -269,6 +252,9 @@
     "editor.tabSize": 2,
     "rewrap.autoWrap.enabled": false
   },
+  "yaml.schemas": {
+    "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+  },
   // --- XML ----------------------------------------------------------------
   "[xml]": {
     "rewrap.autoWrap.enabled": false,
@@ -291,13 +277,6 @@
   // Show test coverage on the lines, not the gutters
   "coverage-gutters.showGutterCoverage": false,
   "coverage-gutters.showLineCoverage": true,
-  // Run eslint on JS(X) and TS(X)
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   // Don't show a confirmation window to sync changes
   "git.confirmSync": false,
   // Default GitLens settings
@@ -310,7 +289,7 @@
   ],
   "projectManager.git.maxDepthRecursion": 1,
   // Manually set platforms for some remote ssh targets
-  "remote.containers.dotfiles.repository": "s-newman/dotfiles",
+  "dotfiles.repository": "s-newman/dotfiles",
   // Same folder sort order as the projectManager extension
   "remote.SSH.foldersSortOrder": "alphabetical",
   // https://github.com/microsoft/vscode-remote-release/issues/6333#issuecomment-1039210946
@@ -329,5 +308,6 @@
     "[x]",
     "raise NotImplementedError()"
   ],
-  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+  "window.zoomLevel": 1
 }
