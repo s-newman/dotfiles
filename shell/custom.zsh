@@ -6,18 +6,14 @@ _try_source () {
   [ -f "${1}" ] && source "${1}"
 }
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Environment vars
+_try_source "${HOME}/.config/shell/envs.zsh"
+
+# Enable Powerlevel10k instant prompt.
+_try_source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
 
 # Aliases
 _try_source "${HOME}/.config/shell/aliases.zsh"
-
-# Environment vars
-_try_source "${HOME}/.config/shell/envs.zsh"
 
 # System-specific customizations
 _try_source "${HOME}/.config/shell/system.zsh"

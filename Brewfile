@@ -1,6 +1,5 @@
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
-tap "romkatv/powerlevel10k"
 brew "age"
 brew "coreutils"
 brew "zstd"
