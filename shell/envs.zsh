@@ -49,3 +49,6 @@ fi
 if [ "$(uname)" = "Darwin" ] && [ -d "${HOME}/Library/Python/3.9/bin" ]; then
   export PATH="${PATH}:${HOME}/Library/Python/3.9/bin"
 fi
+
+# Python --user installations and pipx installations
+export PATH="${PATH}:${HOME}/.local/bin"
