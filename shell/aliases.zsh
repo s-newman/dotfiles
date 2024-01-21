@@ -38,8 +38,8 @@ alias dangerouscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/nu
 # https://askubuntu.com/a/703701
 function up() {
   num=$1
-  while [ ${num} -ne 0 ]; then
+  while [ ${num} -ne 0 ]; do
     cd ..
     num=$((num-1))
-  fi
+  done
 }
