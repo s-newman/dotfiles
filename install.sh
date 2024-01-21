@@ -51,6 +51,9 @@ _link_file gtk-settings.ini .config/gtk-3.0/settings.ini
 mkdir -p "${HOME}/.config/gtk-4.0"
 _link_file gtk-settings.ini .config/gtk-4.0/settings.ini
 
+# Homebrew
+_link_file Brewfile .Brewfile
+
 # Kitty
 _link_dir kitty .config/kitty
 
