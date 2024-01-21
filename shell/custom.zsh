@@ -100,6 +100,12 @@ _try_source /usr/bin/virtualenvwrapper.sh # Linux
 # fluxcd completion
 [ -x /opt/homebrew/bin/flux ] && source <(flux completion zsh)
 
+# fzf
+_try_source "${HOME}/.fzf.zsh"
+
+# Docker desktop
+_try_source "${HOME}/.docker/init-zsh.sh"
+
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
 # Linux installation
