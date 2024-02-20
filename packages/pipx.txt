@@ -1,11 +1,22 @@
 venvs are in /Users/sean/Library/Application Support/pipx/venvs
 apps are exposed on your $PATH at /Users/sean/.local/bin
 manual pages are exposed at /Users/sean/.local/share/man
-   package ansible 9.1.0, installed using Python 3.12.1
+   package ansible 9.2.0, installed using Python 3.12.1
+    - ansible
     - ansible-community
-   package ansible-lint 6.22.2, installed using Python 3.12.1
+    - ansible-config
+    - ansible-connection
+    - ansible-console
+    - ansible-doc
+    - ansible-galaxy
+    - ansible-inventory
+    - ansible-playbook
+    - ansible-pull
+    - ansible-test
+    - ansible-vault
+   package ansible-lint 24.2.0, installed using Python 3.12.1
     - ansible-lint
-   package black 23.12.1, installed using Python 3.12.1
+   package black 24.2.0, installed using Python 3.12.1
     - black
     - blackd
    package flake8 7.0.0, installed using Python 3.12.1

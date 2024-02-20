@@ -2,10 +2,10 @@
 
 Package       Installed  Latest   Needs update
 cargo-edit    v0.12.2    v0.12.2  No
-cargo-geiger  v0.11.6    v0.11.6  No
+cargo-geiger  v0.11.7    v0.11.7  No
 cargo-update  v13.3.0    v13.3.0  No
 cargo-watch   v8.5.2     v8.5.2   No
-mdbook        v0.4.36    v0.4.36  No
+mdbook        v0.4.37    v0.4.37  No
 starship      v1.17.1    v1.17.1  No
 wasm-pack     v0.12.1    v0.12.1  No
 
