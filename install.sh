@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # Deploys the configuration files by creating soft links
-set -eoux pipefail
+set -eou pipefail
+
+# Used by _link_script function
+shopt -s extglob
+
+# Used by script install for-loop
+shopt -s nullglob
 
 # Figure out where our configs are located
 # NOTE: this requires that this (install.sh) script is NOT a link!
@@ -13,6 +19,8 @@ function _link_file {
   local src="${1}"
   local dest="${2}"
   ln -fs "${CONFIGDIR}/${src}" "${HOME}/${dest}"
+
+  echo "[config] ${src} --> ~/${dest}"
 }
 
 # Link a config directory into the specified homedir path.
@@ -22,11 +30,29 @@ function _link_dir {
   local src="${1}"
   local dest="${2}"
   ln -fsn "${CONFIGDIR}/${src}" "${HOME}/${dest}"
+
+  echo "[folder] ${src} --> ~/${dest}"
+}
+
+# Link a script file into ~/bin, without the .sh extension
+function _link_script {
+  local script
+  script=$(basename "${1}")
+  target="bin/${script/%@(.sh|.py)/}"
+  ln -fs "${CONFIGDIR}/${script}" "${HOME}/${target}"
+
+  echo "[script] ${1} --> ~/${target}"
 }
 
 # Ensure directories exist
 mkdir -p "${HOME}/.config" # Store as many configs here as we can to keep the homedir clean
+mkdir -p "${HOME}/bin" # Custom scripts go here
 mkdir -p "${HOME}/.cargo" # Cargo wants a special folder for its config :(
+
+scripts=$(find scripts -type f -maxdepth 1 -name "*.sh" -or -name "*.py" | sed -e 's/^\.\///' -e '/^scripts\/_/d')
+for script in ${scripts}; do
+  _link_script "${script}"
+done
 
 # Package lists for package managers that don't have an equivalent to Brewfile
 _link_dir packages .config/packages
