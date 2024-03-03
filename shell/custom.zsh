@@ -112,6 +112,9 @@ _try_source "${HOME}/.fzf.zsh"
 # Docker desktop
 _try_source "${HOME}/.docker/init-zsh.sh"
 
+# Zoxide
+[ -x /opt/homebrew/bin/zoxide ] && source <(zoxide init zsh)
+
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
 # Linux installation
