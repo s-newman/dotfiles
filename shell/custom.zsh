@@ -6,6 +6,12 @@ _try_source () {
   [ -f "${1}" ] && source "${1}"
 }
 
+# Zinit setup
+ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
+[ ! -d "${ZINIT_HOME}" ] && mkdir -p "$(dirname "${ZINIT_HOME}")"
+[ ! -d "${ZINIT_HOME}/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
+source "${ZINIT_HOME}/zinit.zsh"
+
 # Environment vars
 _try_source "${HOME}/.config/shell/envs.zsh"
 
@@ -59,10 +65,24 @@ bindkey -e
 
 # --- Prompt customization ----------------------------------------------------
 
-_try_source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme # MacOS (ARM)
-_try_source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme # MacOS (Intel)
-_try_source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme # Linux
+zinit ice depth=1
+zinit load romkatv/powerlevel10k
 _try_source "${HOME}/.p10k.zsh"
+
+# --- Various plugins ---------------------------------------------------------
+
+zinit load zsh-users/zsh-autosuggestions
+zinit load MichaelAquilina/zsh-you-should-use
+zinit load reegnz/jq-zsh-plugin
+
+# Needs to stay near bottom
+zinit load zsh-users/zsh-syntax-highlighting
+
+# --- Plugin configuration ----------------------------------------------------
+
+# MichaelAquilina/zsh-you-should-use -- show alias suggestion after command
+# output
+export YSU_MESSAGE_POSITION="after"
 
 # --- Shell extension scripts -------------------------------------------------
 
@@ -72,16 +92,6 @@ _try_source /usr/share/nvm/init-nvm.sh
 # kubectl completion
 [ -f /usr/bin/kubectl ] && source <(kubectl completion zsh)
 [ -f /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
-
-# Syntax highlighting
-_try_source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # MacOS (ARM)
-_try_source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # MacOS (Intel)
-_try_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # Linux
-
-# Autosuggestions
-_try_source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # MacOS (ARM)
-_try_source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh # MacOS (Intel)
-_try_source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh # Linux
 
 # Virtualenvwrapper
 export WORKON_HOME="${HOME}/envs"

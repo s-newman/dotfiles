@@ -11,6 +11,10 @@ pipx upgrade-all
 rustup update
 cargo install-update --all
 
+# Shell integrations
+zinit self-update
+zinit update --all
+
 # LaTeX packages
 sudo tlmgr update --self
 sudo tlmgr update --all
