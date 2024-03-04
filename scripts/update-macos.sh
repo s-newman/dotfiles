@@ -1,5 +1,11 @@
-#!/bin/bash
-set -eoux pipefail
+#!/bin/zsh
+# shellcheck disable=SC1071
+# Shellcheck doesn't support ZSH :(
+
+set -o errexit
+set -o nounset
+set -o pipefail
+set -x
 
 # General packages
 brew upgrade
@@ -12,8 +18,20 @@ rustup update
 cargo install-update --all
 
 # Shell integrations
+set +o errexit
+set +o nounset
+set +o pipefail
+set +x
+ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
+echo "Running \"zinit self-update\"..."
 zinit self-update
+echo "Running \"zinit update --all\"..."
 zinit update --all
+set -o errexit
+set -o nounset
+set -o pipefail
+set -x
 
 # LaTeX packages
 sudo tlmgr update --self
