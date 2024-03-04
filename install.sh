@@ -39,7 +39,7 @@ function _link_script {
   local script
   script=$(basename "${1}")
   target="bin/${script/%@(.sh|.py)/}"
-  ln -fs "${CONFIGDIR}/${script}" "${HOME}/${target}"
+  ln -fs "${CONFIGDIR}/scripts/${script}" "${HOME}/${target}"
 
   echo "[script] ${1} --> ~/${target}"
 }
