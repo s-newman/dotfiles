@@ -1,7 +1,7 @@
 venvs are in /Users/sean/Library/Application Support/pipx/venvs
 apps are exposed on your $PATH at /Users/sean/.local/bin
 manual pages are exposed at /Users/sean/.local/share/man
-   package ansible 9.2.0, installed using Python 3.12.1
+   package ansible 9.3.0, installed using Python 3.12.1
     - ansible
     - ansible-community
     - ansible-config
@@ -27,5 +27,5 @@ manual pages are exposed at /Users/sean/.local/share/man
     - mypyc
     - stubgen
     - stubtest
-   package poetry 1.7.1, installed using Python 3.12.1
+   package poetry 1.8.2, installed using Python 3.12.1
     - poetry
