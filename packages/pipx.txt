@@ -14,14 +14,14 @@ manual pages are exposed at /Users/sean/.local/share/man
     - ansible-pull
     - ansible-test
     - ansible-vault
-   package ansible-lint 24.2.0, installed using Python 3.12.1
+   package ansible-lint 24.2.1, installed using Python 3.12.1
     - ansible-lint
-   package black 24.2.0, installed using Python 3.12.1
+   package black 24.3.0, installed using Python 3.12.1
     - black
     - blackd
    package flake8 7.0.0, installed using Python 3.12.1
     - flake8
-   package mypy 1.8.0, installed using Python 3.12.1
+   package mypy 1.9.0, installed using Python 3.12.1
     - dmypy
     - mypy
     - mypyc
