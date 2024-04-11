@@ -15,9 +15,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Environment vars
 _try_source "${HOME}/.config/shell/envs.zsh"
 
-# Enable Powerlevel10k instant prompt.
-_try_source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
-
 # Aliases
 _try_source "${HOME}/.config/shell/aliases.zsh"
 
