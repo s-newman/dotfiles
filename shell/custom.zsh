@@ -10,6 +10,13 @@ _try_source () {
 ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
 [ ! -d "${ZINIT_HOME}" ] && mkdir -p "$(dirname "${ZINIT_HOME}")"
 [ ! -d "${ZINIT_HOME}/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
+
+# Zinit configuration
+declare -A ZINIT
+# Disable `zi` alias since it conflicts with zoxide
+ZINIT[NO_ALIASES]=1
+
+# Now enable zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Environment vars
