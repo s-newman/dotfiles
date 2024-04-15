@@ -111,7 +111,7 @@ _try_source /usr/bin/virtualenvwrapper.sh # Linux
 [ -x /opt/homebrew/bin/flux ] && source <(flux completion zsh)
 
 # fzf
-_try_source "${HOME}/.fzf.zsh"
+[ -x /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
 
 # Docker desktop
 _try_source "${HOME}/.docker/init-zsh.sh"
