@@ -5,6 +5,9 @@ elif [ -n "${SSH_CONNECTION-}" ] && [ "${LC_TERMINAL-}" = "iTerm2" ]; then
   # Don't render hyperlinks on Linux with iTerm2 -- it adds underlines to every
   # file and looks kinda weird
   alias ls='ls --color=auto'
+elif [ "$(uname)" = "Linux" ]; then
+  # You know what? Also just don't render hyperlinks on Linux
+  alias ls='ls --color=auto'
 else
   alias ls='ls --color=auto --hyperlink=auto'
 fi
