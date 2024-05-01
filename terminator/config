@@ -1,0 +1,23 @@
+[global_config]
+[keybindings]
+  split_horiz = <Shift><Alt>d
+  split_vert = <Alt>d
+  new_window = <Alt>n
+[profiles]
+  [[default]]
+    background_color = "#1f2430"
+    background_image = None
+    font = CaskaydiaMono Nerd Font 10
+    foreground_color = "#cbccc6"
+    palette = "#191e2a:#ed8274:#a6cc70:#fad07b:#6dcbfa:#cfbafa:#90e1c6:#c7c7c7:#686868:#f28779:#bae67e:#ffd580:#73d0ff:#d4bfff:#95e6cb:#ffffff"
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]

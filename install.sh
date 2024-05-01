@@ -97,6 +97,9 @@ if [ "$(uname)" = "Linux" ]; then
   _link_dir environment.d .config/environment.d
 fi
 
+# Terminator
+_link_dir terminator .config/terminator
+
 # Tmux
 _link_file .tmux.conf .tmux.conf
 
