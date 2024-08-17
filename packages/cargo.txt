@@ -1,10 +1,10 @@
     Polling registry 'https://index.crates.io/'......
 
 Package       Installed  Latest   Needs update
-cargo-edit    v0.12.2    v0.12.2  No
+cargo-edit    v0.12.3    v0.12.3  No
 cargo-geiger  v0.11.7    v0.11.7  No
-cargo-update  v13.4.0    v13.4.0  No
+cargo-update  v14.0.2    v14.0.2  No
 cargo-watch   v8.5.2     v8.5.2   No
-mdbook        v0.4.37    v0.4.37  No
-wasm-pack     v0.12.1    v0.12.1  No
+mdbook        v0.4.40    v0.4.40  No
+wasm-pack     v0.13.0    v0.13.0  No
 
