@@ -25,21 +25,35 @@ Format the primary disk. The following sets up a 512MiB EFI boot partition and a
 # replace /dev/sda as necessary
 # can run `parted /dev/sda` to get a prompt
 parted /dev/sda mklabel gpt
-parted /dev/sda mkpart primary fat32 1MiB 513MiB # This will make it 512 MiB instead of 511 MiB
+parted /dev/sda mkpart primary fat32 1MiB 5121MiB # This will make it 5GiB instead of 5GiB - 1 MiB
 parted /dev/sda set 1 esp on
-parted /dev/sda mkpart primary 513MiB 100%
+parted /dev/sda mkpart primary 5121MiB 100%
 # (parted) quit
 
 # Set up LUKS
 cryptsetup -yv luksFormat /dev/sda2
 cryptsetup open /dev/sda2 cryptroot
-mkfs.ext4 /dev/mapper/cryptroot
-mount /dev/mapper/cryptroot /mnt
+
+# Set up LVM
+pvcreate /dev/mapper/cryptid
+vgcreate vgmain /dev/mapper/cryptid
+lvcreate -L 20G vgmain -n lvswap
+lvcreate -l 100%FREE vgmain -n lvbutter
+mkswap /dev/vgmain/lvswap
+mkfs.btrfs /dev/vgmain/lvbutter
+
+# Set up butter subvolumes
+mount /dev/vgmain/lvbutter /mnt
+mkdir /mnt/arch
+btrfs subvolume create /mnt/arch/@root
+btrfs subvolume create /mnt/arch/@home
+umount /mnt
+mount -o subvol=arch/@root /dev/vgmain/lvbutter /mnt
+mount --mkdir -o subvol=arch/@home /dev/vgmain/lvbutter /mnt/home
 
 # Boot partition
 mkfs.fat -F 32 /dev/sda1
-mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot
+mount --mkdir /dev/sda1 /mnt/boot
 
 # Make sure everything looks right
 parted /dev/sda print
@@ -59,7 +73,7 @@ Configure parallel downloading to speed up the first-time installation. In `/etc
 
 Install base set of packages
 ```shell
-pacstrap /mnt base base-devel linux linux-firmware grub efibootmgr intel-ucode sudo zsh tmux vi vim networkmanager wpa_supplicant man-db man-pages texinfo gnome gnome-shell-extensions gnome-tweaks htop python ipython mypy python-black flake8 alacritty bind zsh-autosuggestions zsh-completions zsh-syntax-highlighting tree firefox noto-fonts gnome-shell-extension-gtile wireshark-qt docker docker-compose virtualbox virtualbox-host-modules-arch git
+pacstrap /mnt base base-devel linux linux-firmware intel-ucode btrfs-progs lvm2 sudo zsh tmux vi vim networkmanager wpa_supplicant man-db man-pages texinfo gnome htop python bind tree firefox noto-fonts docker docker-compose docker-buildx git plymouth
 ```
 
 Other possibly useful packages (depends on environment):
@@ -111,7 +125,7 @@ passwd ladmin
 
 Enable passwordless SSH by creating a file at `/etc/sudoers.d/10-wheel` with the following content:
 ```
-%wheel ALL=(ALL) NOPASSWD: ALL
+%wheel ALL=(ALL:ALL) ALL
 ```
 
 ## User Configuration
@@ -122,20 +136,6 @@ Make sure passwordless sudo works:
 ```shell
 sudo su
 exit
-```
-
-Set up dotfiles and scripts
-```shell
-cd ~
-mkdir src
-cd src
-git clone https://github.com/s-newman/dotfiles
-git clone https://github.com/s-newman/scripts
-cd dotfiles
-./install.sh
-cd ../scripts
-./install.sh
-cd ~
 ```
 
 Install and configure yay
@@ -150,30 +150,7 @@ yay --answerclean All --answerdiff None --answeredit None --removemake --cleanaf
 
 Install AUR packages
 ```shell
-yay -S visual-studio-code-bin nerd-fonts-complete zsh-theme-powerlevel10k-git zsh-you-should-use gnome-shell-extension-dash-to-dock rate-mirrors
-```
-
-Add the following content to `~/.config/systemd/user/maintenance.timer`:
-```
-[Unit]
-Description=Weekly system maintenance
-
-[Timer]
-OnCalendar=weekly
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-```
-
-Add the following content to `~/.config/systemd/user/maintenance.service`:
-```
-[Unit]
-Description=Weekly system maintenance
-
-[Service]
-Type=oneshot
-ExecStart=/home/ladmin/bin/maintenance
+yay -S visual-studio-code-bin nerd-fonts-complete
 ```
 
 ## Boot Steps
@@ -182,7 +159,12 @@ Return to the root user within the chroot and finish with the following steps.
 
 Configure your initramfs hooks. The HOOKS line in `/etc/mkinitcpio.conf` should look like this:
 ```
-HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)
+HOOKS=(base udev autodetect microcode modconf kms keyboard keymap plymouth block encrypt lvm2 filesystems fsck)
+```
+
+...and the MODULES line should look like this:
+```
+MODULES=(btrfs)
 ```
 
 Build initramfs:
@@ -195,22 +177,27 @@ Enable parallel pacman downloads by uncommenting the following line in `/etc/pac
 #ParallelDownloads = 5
 ```
 
-Append your LUKS disk UUID to `/etc/default/grub` so you can use it later:
+Install systemd-boot:
 ```shell
-blkid /dev/sda2 | awk '{print $2}' | tr -d '"' | tee -a /etc/default/grub
+bootctl install
+systemctl enable systemd-boot-update.service
 ```
 
-Delete the `GRUB_CMD_LINUX_DEFAULT` line in `/etc/default/grub` and configure the kernel parameters line with the following:
+Add the following content to `/boot/loader/loader.conf`:
 ```
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=00000000-1111-2222-3333-444444444444:cryptroot root=/dev/mapper/cryptroot
+timeout 5
+console-mode 2
 ```
 
-Install grub to the EFI partition:
-```shell
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
-grub-mkconfig -o /boot/grub/grub.cfg
+Add the following content to `/boot/loader/entries/arch.conf`:
 ```
-> The `--removable` option is important for some firmwares that only look in a specific location for the EFI boot image.
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options cryptdevice=UUID=<disk-uuid>:cryptroot root=/dev/vgmain/lvbutter resume=/dev/vgmain/lvswap rootflags=subvol=arch/@root quiet splash
+```
+
+Then replace `<disk-uuid>` in vim by running the vim command `:r! blkid -o value /dev/nvme0n1p2 | head -n 1` to insert the partition UUID for your LUKS partition and move it into place with some vim-fu.
 
 Enable on-boot services:
 ```shell
@@ -221,24 +208,15 @@ systemctl enable gdm NetworkManager wpa_supplicant docker
 
 Exit the chroot, unmount everything with `umount -R /mnt`, reboot, and pray it boots properly!
 
-Once you log in, restore from a backup if you have one. It'll fail on the files you track with the `dotfiles` script, but that's okay.
-
-Check if there's any other packages you need to install:
+Set up dotfiles and scripts
 ```shell
-pacman -Qqett | sort | comm -1 -3 - ~/Documents/packages/installed-packages-YYYY-MM-DD.txt
-```
-
-Restore dconf settings:
-```shell
-dconf load / < ~/Documents/dconf-backups/YYYY-MM-DD.txt
-```
-
-Enable and run the weekly maintenance script:
-```shell
-systemctl --user enable maintenance.timer
-systemctl --user start maintenance.timer
-systemctl --user start maintenance.service
-systemctl --user list-timers # Make sure the `maintenance` timer has a "next" time
+cd ~
+mkdir src
+cd src
+git clone https://github.com/s-newman/dotfiles
+cd dotfiles
+./install.sh
+cd ~
 ```
 
 Open the Settings app and configure:
