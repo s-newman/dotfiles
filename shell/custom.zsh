@@ -122,6 +122,9 @@ _try_source "${HOME}/.docker/init-zsh.sh"
   || [ -x /usr/bin/zoxide ]
 } && source <(zoxide init zsh)
 
+# Just
+[ -x /opt/homebrew/bin/just ] && source <(just --completions zsh)
+
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
 # Linux installation
