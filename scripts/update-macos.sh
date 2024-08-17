@@ -33,10 +33,6 @@ set -o nounset
 set -o pipefail
 set -x
 
-# LaTeX packages
-sudo tlmgr update --self
-sudo tlmgr update --all
-
 # Maintenance
 brew autoremove
 brew cleanup
