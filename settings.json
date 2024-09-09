@@ -31,7 +31,6 @@
   "git.suggestSmartCommit": false,
   // Disable telemetry
   "telemetry.telemetryLevel": "off",
-  "terminal.integrated.gpuAcceleration": "canvas",
   "redhat.telemetry.enabled": false,
   "workbench.enableExperiments": false,
   // Better title bars everywhere
@@ -182,10 +181,6 @@
     "editor.tabSize": 2
   },
   // --- Python -------------------------------------------------------------
-  "flake8.args": [
-    "--max-line-length",
-    "88"
-  ],
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit"
@@ -194,7 +189,8 @@
     "editor.rulers": [
       88
     ],
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "charliermarsh.ruff",
   },
   // --- ReStructuredText ---------------------------------------------------
   "[restructuredtext]": {
@@ -289,8 +285,6 @@
   "projectManager.git.maxDepthRecursion": 1,
   // Manually set platforms for some remote ssh targets
   "dotfiles.repository": "s-newman/dotfiles",
-  // Same folder sort order as the projectManager extension
-  "remote.SSH.foldersSortOrder": "alphabetical",
   // https://github.com/microsoft/vscode-remote-release/issues/6333#issuecomment-1039210946
   "remote.SSH.localServerDownload": "always",
   // Automatically wrap comments as they get typed out
@@ -308,5 +302,6 @@
     "raise NotImplementedError()"
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "gitlens.launchpad.indicator.enabled": false
 }
