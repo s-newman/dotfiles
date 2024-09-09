@@ -5,7 +5,6 @@
 set -o errexit
 set -o nounset
 set -o pipefail
-set -x
 
 # General packages
 brew upgrade
@@ -18,20 +17,12 @@ rustup update
 cargo install-update --all
 
 # Shell integrations
-set +o errexit
-set +o nounset
-set +o pipefail
-set +x
-ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
-source "${ZINIT_HOME}/zinit.zsh"
-echo "Running \"zinit self-update\"..."
-zinit self-update
-echo "Running \"zinit update --all\"..."
-zinit update --all
-set -o errexit
-set -o nounset
-set -o pipefail
-set -x
+for plugin_dir in "${PLUGINS_DIR}"/*; do
+  echo "Updating plugins/$(basename ${plugin_dir}) ..."
+  pushd "${plugin_dir}"
+  git pull
+  popd
+done
 
 # Maintenance
 brew autoremove

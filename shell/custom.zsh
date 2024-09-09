@@ -26,7 +26,7 @@ _try_source () {
 }
 
 # All plugins get cloned under ~/.cache/shell/plugins
-PLUGINS_DIR="${HOME}/.cache/shell/plugins"
+export PLUGINS_DIR="${HOME}/.cache/shell/plugins"
 
 # Load a plugin, cloning it if necessary to PLUGINS_DIR.
 #
