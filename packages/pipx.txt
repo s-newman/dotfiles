@@ -21,7 +21,7 @@ manual pages are exposed at /Users/sean/.local/share/man
     - blackd
    package flake8 7.1.1, installed using Python 3.12.3
     - flake8
-   package mypy 1.11.1, installed using Python 3.12.3
+   package mypy 1.11.2, installed using Python 3.12.3
     - dmypy
     - mypy
     - mypyc
