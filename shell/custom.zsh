@@ -1,29 +1,72 @@
 # --- Stuff that goes first ---------------------------------------------------
 
+# Log a message with time and color to STDERR.
+#
+# ARGS
+#   $@: Message to print to STDERR.
+_log() {
+  print -P "[%F{green}%f* %F{cyan}$(date '+%Y-%m-%d %H:%M:%S')%f] $@" >&2
+}
+
+# Log an error message with time and color to STDERR.
+#
+# This will set the error message color to RED. If you want to set your own
+# colorization, you will need to add %f to the beginning of your message.
+#
+# ARGS
+#   $@: Error message to print to STDERR.
+_error() {
+  print -P "[%F{red}!!%f %F{cyan}$(date '+%Y-%m-%d %H:%M:%S')%f] %F{red}$@%f" >&2
+}
+
 # Helper function to include files only if they exist
 # https://stackoverflow.com/a/10737906
 _try_source () {
   [ -f "${1}" ] && source "${1}"
 }
 
-# Zinit setup
-ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
-[ ! -d "${ZINIT_HOME}" ] && mkdir -p "$(dirname "${ZINIT_HOME}")"
-[ ! -d "${ZINIT_HOME}/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
+# All plugins get cloned under ~/.cache/shell/plugins
+PLUGINS_DIR="${HOME}/.cache/shell/plugins"
 
-# Zinit configuration
-declare -A ZINIT
-# Disable `zi` alias since it conflicts with zoxide
-ZINIT[NO_ALIASES]=1
+# Load a plugin, cloning it if necessary to PLUGINS_DIR.
+#
+# ARGS
+#   $1: The GitHub organization and repo name to clone.
+#   $2: (Optional) Path within repo to the ZSH script to source. Defaults to
+#       the repo name with .zsh, .plugin.zsh, or .zsh-theme at the end (checked
+#       in that order). If this argument is specified and the path is not
+#       found, it will be retried with the above extensions in the same order.
+function _load_plugin {
+  local plugin_dir clone_url repo_name source_file source_path
+  repo_name="${1#*/}"
+  plugin_dir="${PLUGINS_DIR}/${repo_name}"
+  clone_url="https://github.com/${1}"
+  source_file="${2-${repo_name}}"
+  source_path="${plugin_dir}/${source_file}"
 
-# Now enable zinit
-source "${ZINIT_HOME}/zinit.zsh"
+  if [ ! -d "${plugin_dir}" ]; then
+    _log "${1} not found, cloning..."
+    git clone --depth 1 "${clone_url}" "${plugin_dir}"
+  fi
 
-# Environment vars
-_try_source "${HOME}/.config/shell/envs.zsh"
+  if [ -f "${source_path}" ]; then
+    source "${source_path}"
+  elif [ -f "${source_path}.zsh" ]; then
+    source "${source_path}.zsh"
+  elif [ -f "${source_path}.plugin.zsh" ]; then
+    source "${source_path}.plugin.zsh"
+  elif [ -f "${source_path}.zsh-theme" ]; then
+    source "${source_path}.zsh-theme"
+  else
+    _error "could not find source-able script for plugin: ${1}"
+  fi
+}
+
+# Environment variables
+source "${HOME}/.config/shell/envs.zsh"
 
 # Aliases
-_try_source "${HOME}/.config/shell/aliases.zsh"
+source "${HOME}/.config/shell/aliases.zsh"
 
 # System-specific customizations
 _try_source "${HOME}/.config/shell/system.zsh"
@@ -43,7 +86,7 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 
-# Remove blank likes from history
+# Remove blank lines from history
 setopt HIST_REDUCE_BLANKS
 
 # Show complete command before running when referencing history entries
@@ -67,26 +110,23 @@ zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 # Use Emacs mode over Vim mode to reduce issues with editing config lines
 bindkey -e
 
-# --- Prompt customization ----------------------------------------------------
+# ----- Plugins ---------------------------------------------------------------
 
-zinit ice depth=1
-zinit load romkatv/powerlevel10k
+if [ ! -d "${PLUGINS_DIR}" ]; then
+  mkdir -p "${PLUGINS_DIR}"
+fi
+
+# Shell prompt
+_load_plugin romkatv/powerlevel10k powerlevel10k.zsh-theme
 _try_source "${HOME}/.p10k.zsh"
 
-# --- Various plugins ---------------------------------------------------------
+_load_plugin zsh-users/zsh-autosuggestions
 
-zinit load zsh-users/zsh-autosuggestions
-zinit load MichaelAquilina/zsh-you-should-use
-zinit load reegnz/jq-zsh-plugin
-
-# Needs to stay near bottom
-zinit load zsh-users/zsh-syntax-highlighting
-
-# --- Plugin configuration ----------------------------------------------------
-
-# MichaelAquilina/zsh-you-should-use -- show alias suggestion after command
-# output
+_load_plugin MichaelAquilina/zsh-you-should-use
+# Show alias suggestion after command output
 export YSU_MESSAGE_POSITION="after"
+
+# NOTE: additional plugins loaded at the bottom
 
 # --- Shell extension scripts -------------------------------------------------
 
@@ -160,3 +200,8 @@ ansible-cmd() {
 
   ansible $GROUP -i inventory.ini -bm ansible.builtin.shell -a $CMD
 }
+
+# ---- Final Plugins ----------------------------------------------------------
+# Separate section for plugins that need to be loaded after everything else
+
+_load_plugin zsh-users/zsh-syntax-highlighting
