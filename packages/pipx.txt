@@ -1,7 +1,7 @@
 venvs are in /Users/sean/.local/pipx/venvs
 apps are exposed on your $PATH at /Users/sean/.local/bin
 manual pages are exposed at /Users/sean/.local/share/man
-   package ansible 10.4.0, installed using Python 3.12.3
+   package ansible 11.0.0, installed using Python 3.12.3
     - ansible
     - ansible-community
     - ansible-config
@@ -14,18 +14,18 @@ manual pages are exposed at /Users/sean/.local/share/man
     - ansible-pull
     - ansible-test
     - ansible-vault
-   package ansible-lint 24.9.2, installed using Python 3.12.3
+   package ansible-lint 24.10.0, installed using Python 3.12.3
     - ansible-lint
-   package black 24.8.0, installed using Python 3.12.3
+   package black 24.10.0, installed using Python 3.12.3
     - black
     - blackd
    package flake8 7.1.1, installed using Python 3.12.3
     - flake8
-   package mypy 1.11.2, installed using Python 3.12.3
+   package mypy 1.13.0, installed using Python 3.12.3
     - dmypy
     - mypy
     - mypyc
     - stubgen
     - stubtest
-   package poetry 1.8.3, installed using Python 3.12.3
+   package poetry 1.8.4, installed using Python 3.12.3
     - poetry
