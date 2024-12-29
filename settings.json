@@ -107,8 +107,6 @@
   },
   // Don't try to auto-detect indentation, it goes bad sometimes
   "editor.detectIndentation": false,
-  // Themes
-  "workbench.colorTheme": "Ayu Mirage Bordered",
   "workbench.iconTheme": "material-icon-theme",
   //
   // ------------------------------------------------------------------------
@@ -192,6 +190,9 @@
     "editor.tabSize": 4,
     "editor.defaultFormatter": "charliermarsh.ruff",
   },
+  "python.experiments.optInto": [
+    "pythonTestAdapter"
+  ],
   // --- ReStructuredText ---------------------------------------------------
   "[restructuredtext]": {
     "editor.tabSize": 3,
@@ -248,7 +249,7 @@
     "rewrap.autoWrap.enabled": false
   },
   "yaml.schemas": {
-    "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+    "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml",
   },
   // --- XML ----------------------------------------------------------------
   "[xml]": {
@@ -303,5 +304,12 @@
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "window.zoomLevel": 1,
-  "gitlens.launchpad.indicator.enabled": false
+  "gitlens.launchpad.indicator.enabled": false,
+  "vs-kubernetes": {
+    "disable-linters": [
+      "resource-limits"
+    ]
+  },
+  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "chat.commandCenter.enabled": false
 }
