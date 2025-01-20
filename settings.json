@@ -311,5 +311,6 @@
     ]
   },
   "workbench.colorTheme": "Ayu Mirage Bordered",
-  "chat.commandCenter.enabled": false
+  "chat.commandCenter.enabled": false,
+  "git.openRepositoryInParentFolders": "never"
 }
