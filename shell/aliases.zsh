@@ -40,6 +40,14 @@ alias brew-openssl='/usr/local/opt/openssl/bin/openssl'
 alias dangeroussh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias dangerouscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
+# Just
+alias j='just'
+alias jb='just build'
+alias jl='just --list'
+
+# Mise
+alias mm='mise run'
+
 # Going up directories faster
 # https://askubuntu.com/a/703701
 function up() {
