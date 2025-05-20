@@ -136,6 +136,7 @@ _try_source /usr/share/nvm/init-nvm.sh
 # kubectl completion
 [ -f /usr/bin/kubectl ] && source <(kubectl completion zsh)
 [ -f /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
+[ -f /opt/homebrew/bin/kubectl ] && source <(kubectl completion zsh)
 
 # Virtualenvwrapper
 export WORKON_HOME="${HOME}/envs"
