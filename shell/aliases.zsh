@@ -46,6 +46,7 @@ alias jb='just build'
 alias jl='just --list'
 
 # Mise
+alias m='mise'
 alias mm='mise run'
 
 # Going up directories faster
