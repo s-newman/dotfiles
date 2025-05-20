@@ -71,6 +71,10 @@ fi
 # Flake8
 _link_file .flake8 .config/flake8
 
+# Git
+_link_file .gitconfig .gitconfig
+_link_file .gitignore-global .gitignore-global
+
 # GNU Readline
 _link_file .inputrc .inputrc
 

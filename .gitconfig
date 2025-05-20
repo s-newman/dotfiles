@@ -1,0 +1,15 @@
+[user]
+    name = Sean Newman
+    email = sean@snewman.co
+
+[merge]
+    ff = only
+
+[pull]
+    ff = only
+
+[init]
+    defaultBranch = main
+
+[core]
+    excludesfile = ~/.gitignore-global
