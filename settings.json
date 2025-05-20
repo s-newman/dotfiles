@@ -58,7 +58,7 @@
   // Autoformat code when possible
   "editor.formatOnSave": true,
   // Customize font
-  "editor.fontFamily": "'Rec Mono Casual'",
+  "editor.fontFamily": "'Recursive Mono Casual Static'",
   "terminal.integrated.fontFamily": "'RecMonoCasual Nerd Font Mono'",
   // Font ligatures combine adjacent characters into a single cool character
   "editor.fontLigatures": true,
