@@ -42,7 +42,7 @@ alias jl='just --list'
 
 # Mise
 alias m='mise'
-alias mm='mise run'
+alias mr='mise run'
 
 # Going up directories faster
 # https://askubuntu.com/a/703701
