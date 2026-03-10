@@ -50,6 +50,24 @@ if in-path brew; then
   brew bundle dump --force --file "${pkg_list_dir}/Brewfile"
 fi
 
+if in-path apt; then
+  # Grab list of base-installed packages from file
+  pkg_dir=$(dirname "${pkg_list_dir}")
+  if [ ! -f "${pkg_dir}/base-apt-packages.txt" ]; then
+    # Try to grab list from installer
+    # Ref: https://askubuntu.com/a/492343
+    if [ -f /var/log/installer/initial-status.gz ]; then
+      gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u> "${pkg_dir}/base-apt-packages.txt"
+    else
+      # Fall back to just displaying the current list of installed packages
+      # (will need manual adjustment to be accurate)
+      apt-mark showmanual | sort -u > "${pkg_dir}/base-apt-packages.txt"
+    fi
+  fi
+
+  comm -23 <(apt-mark showmanual | sort -u) "${pkg_dir}/base-apt-packages.txt" > "${pkg_list_dir}/apt.txt"
+fi
+
 # Check for dotfiles update
 cd "${HOME}/src/dotfiles"
 git fetch
