@@ -18,6 +18,11 @@ export HISTSIZE=10000
 # Always use BuildKit builds
 export DOCKER_BUILDKIT=1
 
+# Don't use LS_COLORS to configure colorized ls output -- delegate color
+# configuration to the terminal emulator, ensuring color scheme consistency
+# across platforms.
+unset LS_COLORS
+
 # --- PATH configuration ------------------------------------------------------
 
 # User bin directory for shell scripts
