@@ -235,6 +235,9 @@
   "[tf]": {
     "editor.tabSize": 2
   },
+  "[opentofu]": {
+    "editor.tabSize": 2
+  },
   // --- TypeScript ---------------------------------------------------------
   "[typescript]": {
     "editor.tabSize": 2
@@ -313,5 +316,12 @@
   },
   "workbench.colorTheme": "Ayu Mirage Bordered",
   "chat.commandCenter.enabled": false,
-  "git.openRepositoryInParentFolders": "never"
+  "git.openRepositoryInParentFolders": "never",
+  "go.toolsManagement.autoUpdate": true,
+  "workbench.editor.empty.hint": "hidden",
+  "lldb.suppressUpdateNotifications": true,
+  "docker.extension.enableComposeLanguageServer": false,
+  "docker.lsp.experimental.vulnerabilityScanning": false,
+  "git.blame.editorDecoration.enabled": true,
+  "mise.binPath": "/opt/homebrew/bin/mise"
 }
