@@ -9,12 +9,6 @@ export GOPATH=${HOME}/go
 # Configure NVM directory
 export NVM_DIR=${HOME}/.config/nvm
 
-# Configure LLVM path for working with redbpf
-if [ "$(uname)" = "Linux" ]
-then
-  export LLVM_SYS_110_PREFIX=/usr
-fi
-
 # Enable history file
 export HISTORY=${HOME}/.zhistory
 export HISTFILE=${HOME}/.zhistory
