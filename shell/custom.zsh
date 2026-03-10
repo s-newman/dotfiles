@@ -112,6 +112,10 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # Partial path completion
 zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 
+# CTRL-W delete up to a slash in paths
+autoload -Uz select-word-style
+select-word-style bash
+
 # Use Emacs mode over Vim mode to reduce issues with editing config lines
 bindkey -e
 
