@@ -25,6 +25,11 @@ _try_source () {
   [ -f "${1}" ] && source "${1}"
 }
 
+# Quiet version of whence to look for commands in PATH
+in-path() {
+  whence $1 >/dev/null
+}
+
 # All plugins get cloned under ~/.cache/shell/plugins
 export PLUGINS_DIR="${HOME}/.cache/shell/plugins"
 
@@ -133,41 +138,29 @@ export YSU_MESSAGE_POSITION="after"
 # NVM
 _try_source /usr/share/nvm/init-nvm.sh
 
-# kubectl completion
-[ -f /usr/bin/kubectl ] && source <(kubectl completion zsh)
-[ -f /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
-[ -f /opt/homebrew/bin/kubectl ] && source <(kubectl completion zsh)
-
-# Virtualenvwrapper
-export WORKON_HOME="${HOME}/envs"
-mkdir -p "${WORKON_HOME}"
-_try_source /opt/homebrew/bin/virtualenvwrapper.sh # MacOS (ARM)
-_try_source /usr/local/bin/virtualenvwrapper.sh # MacOS (Intel)
-_try_source /usr/bin/virtualenvwrapper.sh # Linux
+# kubectl
+in-path kubectl && source <(kubectl completion zsh)
 
 # Broot
-[ -x /usr/bin/broot ] && source <(broot --print-shell-function zsh)
+in-path broot && source <(broot --print-shell-function zsh)
 
 # fluxcd completion
-[ -x /opt/homebrew/bin/flux ] && source <(flux completion zsh)
+in-path flux && source <(flux completion zsh)
 
 # fzf
-[ -x /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
+in-path fzf && source <(fzf --zsh)
 
 # Docker desktop
 _try_source "${HOME}/.docker/init-zsh.sh"
 
 # Zoxide
-{
-  [ -x /opt/homebrew/bin/zoxide ] \
-  || [ -x /usr/bin/zoxide ]
-} && source <(zoxide init zsh)
+in-path zoxide && source <(zoxide init zsh)
 
 # Just
-[ -x /opt/homebrew/bin/just ] && source <(just --completions zsh)
+in-path just && source <(just --completions zsh)
 
 # Mise
-[ -x /opt/homebrew/bin/mise ] && source <(mise activate zsh)
+in-path mise && source <(mise activate zsh)
 
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
