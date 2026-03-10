@@ -19,6 +19,9 @@ alias grep='grep --color=auto'
 # Alias kubectl to be easier to type
 alias k='kubectl'
 
+# Debian's `fd-find` package installs fd as fdfind
+in-path fdfind && alias fd='fdfind'
+
 # gcloud stuff
 alias gcon='gcloud config configurations'
 alias gssh='gcloud compute ssh'
