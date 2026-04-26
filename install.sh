@@ -49,7 +49,7 @@ mkdir -p "${HOME}/.config" # Store as many configs here as we can to keep the ho
 mkdir -p "${HOME}/bin" # Custom scripts go here
 mkdir -p "${HOME}/.cargo" # Cargo wants a special folder for its config :(
 
-scripts=$(find scripts -type f -maxdepth 1 -name "*.sh" -or -name "*.zsh" -or -name "*.py" | sed -e 's/^\.\///' -e '/^scripts\/_/d')
+scripts=$(find scripts -maxdepth 1 -type f -name "*.sh" -or -name "*.zsh" -or -name "*.py" | sed -e 's/^\.\///' -e '/^scripts\/_/d')
 for script in ${scripts}; do
   _link_script "${script}"
 done
