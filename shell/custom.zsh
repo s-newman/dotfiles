@@ -166,6 +166,9 @@ in-path just && source <(just --completions zsh)
 # Mise
 in-path mise && source <(mise activate zsh)
 
+# Direnv
+in-path direnv && source <(direnv hook zsh)
+
 # --- GCP stuff goes here because it breaks otherwise -------------------------
 
 # Linux installation

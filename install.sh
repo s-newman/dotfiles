@@ -63,6 +63,9 @@ _link_dir alacritty .config/alacritty
 # Cargo
 _link_file cargo/config.toml .cargo/config.toml
 
+# Direnv
+_link_dir direnv .config/direnv
+
 # Electron
 if [ "$(uname)" = "Linux" ]; then
   _link_file electron-flags.conf .config/electron-flags.conf
