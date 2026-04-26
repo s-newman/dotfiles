@@ -47,6 +47,9 @@ alias jl='just --list'
 alias m='mise'
 alias mr='mise run'
 
+# Tree
+alias tree='tree -C'
+
 # Going up directories faster
 # https://askubuntu.com/a/703701
 function up() {
