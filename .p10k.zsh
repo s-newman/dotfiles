@@ -32,6 +32,7 @@
   # Custom VCS stuff
   typeset -g POWERLEVEL9K_VCS_GIT_REMOTE_ICONS=(
     '*github*' VCS_GIT_GITHUB_ICON
+    '*gitlab*' VCS_GIT_GITLAB_ICON
   )
 
   # The list of segments shown on the left. Fill it with the most important segments.
