@@ -46,6 +46,7 @@ alias jl='just --list'
 # Mise
 alias m='mise'
 alias mr='mise run'
+alias mt='mise tasks ls'
 
 # Tree
 alias tree='tree -C'
